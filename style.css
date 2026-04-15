@@ -140,6 +140,8 @@ p{
     margin: 30px 0;
     border-radius: 30px;
     transition: background 0.5s;
+    border: none;       
+    outline: none; 
 }
 
 .btn:hover{
@@ -357,7 +359,6 @@ h4{
 }
 
 .produtos-btns{
-    cursor: pointer;
     display: flex;
     gap: 10px;
     margin-top: 6px;
@@ -506,6 +507,7 @@ h4{
     font-size: 15px;
 }
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* Responsividade */
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 @media only screen and (max-width:800px){
