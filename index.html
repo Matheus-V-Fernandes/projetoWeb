@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,13 @@
 </head>
 
 <body>
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
     <!-- Pop-up de pedido -->
     <div id="popup-overlay" class="popup-overlay" onclick="fecharPopup(event)">
+
+        <!-- Caixa do popup -->
         <div class="popup">
             <button class="popup-fechar" onclick="fecharPopupBtn()">&#x2715;</button>
             <h2 class="popup-titulo">Fazer Pedido</h2>
@@ -26,7 +29,7 @@
                 <label for="pedido-telefone">WhatsApp</label>
                 <input type="tel" id="pedido-telefone" placeholder="Ex: (14) 99999-9999">
             </div>
-            
+
             <div class="popup-campo">
                 <label for="pedido-quantidade">Quantidade</label>
                 <input type="number" id="pedido-quantidade" min="1" value="1">
@@ -55,16 +58,16 @@
         </div>
     </div>
 
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
     <!-- Barra de navegação e banner principal -->
     <div class="banner">
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a id="nome_logo" href="#" onclick="mostrarPagina('home')"> Laço & Linha</a> 
-                </div> 
+                    <a id="nome_logo" href="#" onclick="mostrarPagina('home')"> Laço & Linha</a>
+                </div>
                 <nav>
                     <ul id="MenuItens">
                         <li><a href="#" onclick="mostrarPagina('home')">Catálogo</a></li>
@@ -89,31 +92,34 @@
         </div>
     </div>
 
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
     <!-- Página principal (com catálogo de produtos)-->
-   <div id="pagina-home">
+    <div id="pagina-home">
         <div class="categorias">
             <div class="corpo-categorias">
                 <h2 class="titulo">Ofertas</h2>
 
                 <div class="linha" id="ofertas-grid">
-                <!-- Carregado por script-->
-                </div>       
+                    <!-- Carregado por script-->
+                </div>
                 <h2 class="titulo">Produtos em Destaque</h2>
 
                 <div class="linha" id="destaque-grid">
-                <!-- Carregado por script-->
+                    <!-- Carregado por script-->
                 </div>
             </div>
         </div>
 
         <div class="banner">
             <div class="linha">
-                <div class="coll-2"><img src="imgs/banner-3.png" alt="Background com cesto com barbante" width="200x"></div>
-                <div class="coll-2"><img src="imgs/banner-4.png" alt="Background com cesto com barbante" width="300px"></div>
-                <div class="coll-2"><img src="imgs/banner-2.png" alt="Background com cesto com barbante" width="200px"></div>
+                <div class="coll-2"><img src="imgs/banner-3.png" alt="Background com cesto com barbante" width="200x">
+                </div>
+                <div class="coll-2"><img src="imgs/banner-4.png" alt="Background com cesto com barbante" width="300px">
+                </div>
+                <div class="coll-2"><img src="imgs/banner-2.png" alt="Background com cesto com barbante" width="200px">
+                </div>
             </div>
         </div>
 
@@ -127,8 +133,8 @@
         </div>
     </div>
 
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
     <!-- Página de pedidos -->
     <div id="pagina-pedidos" style="display:none">
@@ -142,39 +148,60 @@
         </div>
     </div>
 
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
+    <!-- ================= PÁGINA ADMIN ================= -->
     <!-- Página de gerenciamento dos produtos -->
     <div id="pagina-admin" style="display:none">
+
+
+        <!-- Container geral -->
         <div class="categorias">
             <div class="corpo-categorias">
+
+                <!-- Título -->
                 <h2 class="titulo">Administrar Produtos</h2>
 
                 <div class="admin-form">
                     <h3>Adicionar / Editar Produto</h3>
+
+                    <!-- ID oculto:
+                     - vazio → novo produto
+                     - preenchido → edição -->
                     <input type="hidden" id="admin-id">
+
+                    <!-- Nome do produto -->
                     <div class="popup-campo">
                         <label>Nome do produto</label>
                         <input type="text" id="admin-nome" placeholder="Ex: Tapete redondo (Verde)">
                     </div>
+
                     <div class="popup-campo">
                         <label>Preço (R$)</label>
                         <input type="number" id="admin-preco" placeholder="Ex: 39.99" step="0.01" min="0">
                     </div>
+
+                    <!-- Upload de imagem -->
                     <div class="popup-campo">
                         <label>Imagem</label>
+
+                        <!-- Área de drag & drop -->
                         <div id="drop-area">
                             <p>Arraste a imagem aqui ou clique para selecionar</p>
                             <input type="file" id="admin-file" accept="image/*" style="display:none">
                             <img id="preview-img" src="" style="display:none; max-width: 100px; margin-top: 10px;">
-                            <input type="hidden" id="admin-img"> 
+                            <input type="hidden" id="admin-img">
                         </div>
                     </div>
+
+                    <!-- Texto alternativo (acessibilidade) -->
                     <div class="popup-campo">
                         <label>Descrição da imagem</label>
                         <input type="text" id="admin-alt" placeholder="Descrição da imagem">
                     </div>
+
+                    <!-- Categoria do produto -->
                     <div class="popup-campo">
                         <label>Categoria</label>
                         <select id="admin-cat">
@@ -189,16 +216,19 @@
                     </div>
                 </div>
 
+                <!-- ===== LISTA DE PRODUTOS ===== -->
                 <h3 style="margin:30px 0 15px; color:#555">Produtos cadastrados</h3>
+
+                <!-- Lista preenchida pelo JS -->
                 <div id="admin-lista-produtos" class="admin-lista">
-                    <!-- gerado pelo JS -->
+                    <!-- JS preenche aqui -->
                 </div>
             </div>
         </div>
     </div>
 
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
     <!-- Rodapé -->
     <footer class="rodape">
@@ -215,10 +245,11 @@
         </div>
     </footer>
 
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
     <!-- scrip -->
     <script src="loja.js"></script>
 </body>
+
 </html>
