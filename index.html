@@ -1,255 +1,182 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laço e Linha - Ourinhos</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-    <!-- Pop-up de pedido -->
-    <div id="popup-overlay" class="popup-overlay" onclick="fecharPopup(event)">
+<!-- POPUP DE PEDIDO -->
+<div id="popup-overlay" class="popup-overlay" onclick="fecharPopup(event)">
+    <div class="popup">
+        <button class="popup-fechar" onclick="fecharPopupBtn()">&#x2715;</button>
+        <h2 class="popup-titulo">Fazer Pedido</h2>
+        <p id="popup-produto-nome" class="popup-produto-nome"></p>
+        <p id="popup-produto-preco" class="popup-produto-preco"></p>
+        <div class="popup-campo">
+            <label for="pedido-nome">Seu nome</label>
+            <input type="text" id="pedido-nome" placeholder="Ex: Maria Silva">
+        </div>
+        <div class="popup-campo">
+            <label for="pedido-telefone">WhatsApp</label>
+            <input type="tel" id="pedido-telefone" placeholder="Ex: (14) 99999-9999">
+        </div>
+        <div class="popup-campo">
+            <label for="pedido-cor">Cor preferida</label>
+            <input type="text" id="pedido-cor" placeholder="Ex: Azul, Rosa, Amarelo...">
+        </div>
+        <div class="popup-campo">
+            <label for="pedido-obs">Observações</label>
+            <textarea id="pedido-obs" rows="3" placeholder="Tamanho, personalização..."></textarea>
+        </div>
+        <button class="btn popup-btn" onclick="confirmarPedido()">Confirmar Pedido</button>
+    </div>
+</div>
 
-        <!-- Caixa do popup -->
-        <div class="popup">
-            <button class="popup-fechar" onclick="fecharPopupBtn()">&#x2715;</button>
-            <h2 class="popup-titulo">Fazer Pedido</h2>
-            <p id="popup-produto-nome" class="popup-produto-nome"></p>
-            <p id="popup-produto-preco" class="popup-produto-preco"></p>
-            <div class="popup-campo">
-                <label for="pedido-nome">Seu nome</label>
-                <input type="text" id="pedido-nome" placeholder="Ex: Maria Silva">
+<!-- BANNER / HEADER -->
+<div class="banner">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a id="nome_logo" href="#" onclick="mostrarPagina('home')"> Laço &amp; Linha</a>
             </div>
-            <div class="popup-campo">
-                <label for="pedido-telefone">WhatsApp</label>
-                <input type="tel" id="pedido-telefone" placeholder="Ex: (14) 99999-9999">
+            <nav>
+                <ul id="MenuItens">
+                    <li><a href="#" onclick="mostrarPagina('home')">Catálogo</a></li>
+                    <li><a href="#" onclick="mostrarPagina('pedidos')">Pedidos</a></li>
+                    <li><a href="#" onclick="mostrarPagina('admin')">Admin</a></li>
+                </ul>
+            </nav>
+            <img src="imgs/menuCelular.png" alt="Menu" class="menu-celular" onclick="menucelular()">
+        </div>
+        <small id="sub_logo">artesanatos em barbante</small>
+
+        <!-- visível apenas na home -->
+        <div id="banner-hero" class="linha">
+            <div class="coll-2">
+                <h1>Feito com carinho, <br>nó por nó</h1>
+                <p>Peças únicas de crochê e bordado artesanal. Encomende com a sua cor preferida!</p>
+                <br><a href="#catalogo" class="btn">Ver Catálogo &#8595;</a>
+            </div>
+            <div class="coll-2">
+                <img src="imgs/banner-1.png" alt="Cesto com barbante" width="200px">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== PÁGINA HOME ===================== -->
+<div id="pagina-home">
+
+    <div class="categorias">
+        <div class="corpo-categorias">
+            <h2 class="titulo">Produtos em Destaque</h2>
+            <div class="linha" id="destaque-grid">
+                <!-- gerado pelo JS -->
             </div>
 
-            <div class="popup-campo">
-                <label for="pedido-quantidade">Quantidade</label>
-                <input type="number" id="pedido-quantidade" min="1" value="1">
+            <h2 class="titulo">Ofertas</h2>
+            <div class="linha" id="ofertas-grid">
+                <!-- gerado pelo JS -->
             </div>
-
-            <div class="popup-campo">
-                <label for="pedido-cidade">Cidade</label>
-                <select id="pedido-cidade">
-                    <option value="">Selecione sua cidade</option>
-                    <option value="Ourinhos">Ourinhos</option>
-                    <option value="Chavantes">Chavantes</option>
-                    <option value="Canitar">Canitar</option>
-                </select>
-            </div>
-
-            <div class="popup-campo">
-                <label for="pedido-endereco">Endereço</label>
-                <input type="text" id="pedido-endereco" placeholder="Rua, nº, Bairro">
-            </div>
-
-            <div class="popup-campo">
-                <label for="pedido-obs">Observações</label>
-                <textarea id="pedido-obs" rows="3" placeholder="Tamanho, personalização..."></textarea>
-            </div>
-            <button class="btn popup-btn" onclick="confirmarPedido()">Confirmar Pedido</button>
         </div>
     </div>
 
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-    <!-- Barra de navegação e banner principal -->
     <div class="banner">
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <a id="nome_logo" href="#" onclick="mostrarPagina('home')"> Laço & Linha</a>
-                </div>
-                <nav>
-                    <ul id="MenuItens">
-                        <li><a href="#" onclick="mostrarPagina('home')">Catálogo</a></li>
-                        <li><a href="#" onclick="mostrarPagina('pedidos')">Pedidos</a></li>
-                        <li><a href="#" onclick="mostrarPagina('admin')">Admin</a></li>
-                    </ul>
-                </nav>
-                <img src="imgs/menuCelular.png" alt="Três traços (menu)" class="menu-celular" onclick="menucelular()">
-            </div>
-            <small id="sub_logo">artesanatos em barbante</small>
+        <div class="linha">
+            <div class="coll-2"><img src="imgs/banner-3.png" alt="" width="200px"></div>
+            <div class="coll-2"><img src="imgs/banner-4.png" alt="" width="300px"></div>
+            <div class="coll-2"><img src="imgs/banner-2.png" alt="" width="200px"></div>
+        </div>
+    </div>
 
-            <div id="banner-hero" class="linha">
-                <div class="coll-2">
-                    <h1>Feito com carinho, <br>nó por nó</h1>
-                    <p>Peças únicas de crochê e bordado artesanal. Encomende com a sua cor preferida!</p>
-                    <br><a href="#catalogo" class="btn">Ver Catálogo &#8595;</a>
-                </div>
-                <div class="coll-2">
-                    <img src="imgs/banner-1.png" alt="Background com cesto com barbante" width="200px">
-                </div>
+    <div class="categorias">
+        <div class="corpo-categorias">
+            <h2 class="titulo" id="catalogo">Catálogo Geral</h2>
+            <div class="linha" id="catalogo-grid">
+                <!-- gerado pelo JS -->
             </div>
         </div>
     </div>
 
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+</div>
 
-    <!-- Página principal (com catálogo de produtos)-->
-    <div id="pagina-home">
-        <div class="categorias">
-            <div class="corpo-categorias">
-                <h2 class="titulo">Ofertas</h2>
-
-                <div class="linha" id="ofertas-grid">
-                    <!-- Carregado por script-->
-                </div>
-                <h2 class="titulo">Produtos em Destaque</h2>
-
-                <div class="linha" id="destaque-grid">
-                    <!-- Carregado por script-->
-                </div>
+<!-- ===================== PÁGINA PEDIDOS ===================== -->
+<div id="pagina-pedidos" style="display:none">
+    <div class="categorias">
+        <div class="corpo-categorias">
+            <h2 class="titulo">Pedidos Recebidos</h2>
+            <div id="lista-pedidos" class="lista-pedidos">
+                <!-- gerado pelo JS -->
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="banner">
-            <div class="linha">
-                <div class="coll-2"><img src="imgs/banner-3.png" alt="Background com cesto com barbante" width="200x">
+<!-- ===================== PÁGINA ADMIN ===================== -->
+<div id="pagina-admin" style="display:none">
+    <div class="categorias">
+        <div class="corpo-categorias">
+            <h2 class="titulo">Administrar Produtos</h2>
+
+            <div class="admin-form">
+                <h3>Adicionar / Editar Produto</h3>
+                <input type="hidden" id="admin-id">
+                <div class="popup-campo">
+                    <label>Nome do produto</label>
+                    <input type="text" id="admin-nome" placeholder="Ex: Tapete redondo (Verde)">
                 </div>
-                <div class="coll-2"><img src="imgs/banner-4.png" alt="Background com cesto com barbante" width="300px">
+                <div class="popup-campo">
+                    <label>Preço (R$)</label>
+                    <input type="number" id="admin-preco" placeholder="Ex: 39.99" step="0.01" min="0">
                 </div>
-                <div class="coll-2"><img src="imgs/banner-2.png" alt="Background com cesto com barbante" width="200px">
+                <div class="popup-campo">
+                    <label>Caminho da imagem</label>
+                    <input type="text" id="admin-img" placeholder="Ex: imgs/produto1.jpeg">
+                </div>
+                <div class="popup-campo">
+                    <label>Alt da imagem</label>
+                    <input type="text" id="admin-alt" placeholder="Descrição da imagem">
+                </div>
+                <div class="popup-campo">
+                    <label>Categoria</label>
+                    <select id="admin-cat">
+                        <option value="destaque">Destaque</option>
+                        <option value="oferta">Oferta</option>
+                        <option value="catalogo">Catálogo</option>
+                    </select>
+                </div>
+                <div class="admin-btns">
+                    <button class="btn" onclick="salvarProduto()">Salvar Produto</button>
+                    <button class="btn btn-cancelar" onclick="limparFormAdmin()">Limpar</button>
                 </div>
             </div>
-        </div>
 
-        <div class="categorias">
-            <div class="corpo-categorias">
-                <h2 class="titulo" id="catalogo">Catálogo geral</h2>
-                <div class="linha" id="catalogo-grid">
-                    <!-- Carregado por script-->
+            <h3 style="margin:30px 0 15px; color:#555">Produtos cadastrados</h3>
+            <div id="admin-lista-produtos" class="admin-lista">
+                <!-- gerado pelo JS -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="rodape">
+    <div class="container">
+        <div class="linha">
+            <div class="rodape-col-1">
+                <h3>&#169; 2026 Laço &amp; Linha — Todos os direitos reservados.</h3>
+                <div class="contato">
+                    <h2>Fale conosco</h2>
+                    <img src="imgs/whatsapp.png" alt="WhatsApp" width="30px" height="30px">
                 </div>
             </div>
         </div>
     </div>
+</footer>
 
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-    <!-- Página de pedidos -->
-    <div id="pagina-pedidos" style="display:none">
-        <div class="categorias">
-            <div class="corpo-categorias">
-                <h2 class="titulo">Pedidos Recebidos</h2>
-                <div id="lista-pedidos" class="lista-pedidos">
-                    <!-- gerado pelo JS -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-    <!-- ================= PÁGINA ADMIN ================= -->
-    <!-- Página de gerenciamento dos produtos -->
-    <div id="pagina-admin" style="display:none">
-
-
-        <!-- Container geral -->
-        <div class="categorias">
-            <div class="corpo-categorias">
-
-                <!-- Título -->
-                <h2 class="titulo">Administrar Produtos</h2>
-
-                <div class="admin-form">
-                    <h3>Adicionar / Editar Produto</h3>
-
-                    <!-- ID oculto:
-                     - vazio → novo produto
-                     - preenchido → edição -->
-                    <input type="hidden" id="admin-id">
-
-                    <!-- Nome do produto -->
-                    <div class="popup-campo">
-                        <label>Nome do produto</label>
-                        <input type="text" id="admin-nome" placeholder="Ex: Tapete redondo (Verde)">
-                    </div>
-
-                    <div class="popup-campo">
-                        <label>Preço (R$)</label>
-                        <input type="number" id="admin-preco" placeholder="Ex: 39.99" step="0.01" min="0">
-                    </div>
-
-                    <!-- Upload de imagem -->
-                    <div class="popup-campo">
-                        <label>Imagem</label>
-
-                        <!-- Área de drag & drop -->
-                        <div id="drop-area">
-                            <p>Arraste a imagem aqui ou clique para selecionar</p>
-                            <input type="file" id="admin-file" accept="image/*" style="display:none">
-                            <img id="preview-img" src="" style="display:none; max-width: 100px; margin-top: 10px;">
-                            <input type="hidden" id="admin-img">
-                        </div>
-                    </div>
-
-                    <!-- Texto alternativo (acessibilidade) -->
-                    <div class="popup-campo">
-                        <label>Descrição da imagem</label>
-                        <input type="text" id="admin-alt" placeholder="Descrição da imagem">
-                    </div>
-
-                    <!-- Categoria do produto -->
-                    <div class="popup-campo">
-                        <label>Categoria</label>
-                        <select id="admin-cat">
-                            <option value="destaque">Destaque</option>
-                            <option value="oferta">Oferta</option>
-                            <option value="catalogo">Catálogo</option>
-                        </select>
-                    </div>
-                    <div class="admin-btns">
-                        <button class="btn" onclick="salvarProduto()">Salvar Produto</button>
-                        <button class="btn btn-cancelar" onclick="limparFormAdmin()">Limpar</button>
-                    </div>
-                </div>
-
-                <!-- ===== LISTA DE PRODUTOS ===== -->
-                <h3 style="margin:30px 0 15px; color:#555">Produtos cadastrados</h3>
-
-                <!-- Lista preenchida pelo JS -->
-                <div id="admin-lista-produtos" class="admin-lista">
-                    <!-- JS preenche aqui -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-    <!-- Rodapé -->
-    <footer class="rodape">
-        <div class="container">
-            <div class="linha">
-                <div class="rodape-col-1">
-                    <h3>&#169 2026 Laço & Linha — Todos os direitos reservados.</h3>
-                    <div class="contato">
-                        <h2>Fale conosco</h2>
-                        <img src="imgs/whatsapp.png" alt="Logo do whatsapp" width="30px" height="30px">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-    <!-- scrip -->
-    <script src="loja.js"></script>
+<script src="loja.js"></script>
 </body>
-
 </html>
