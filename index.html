@@ -1,76 +1,85 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laço e Linha - Ourinhos</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Pop-up de pedido -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-<body>
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- Barra de navegação e banner principal -->
-    <div class="banner">
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <a id="nome_logo" href="#" onclick="mostrarPagina('home')"> Laço & Linha</a> 
-                </div> 
-                <nav>
-                    <ul id="MenuItens"> <!-- Menu de navegação-->
-                        <li><a href="#" onclick="mostrarPagina('home')">Catálogo</a></li>
-                        <li class="admin"><a href="#" onclick="mostrarPagina('pedidos')">Pedidos</a></li>
-                        <li class="admin"><a href="#" onclick="mostrarPagina('produtos')">Produtos</a></li>
-                        <li class="visitante" ><a href="#" onclick="autenticar()"> Admin <img src="imgs/cadeado.png" width="20px" alt="Ícone de cadeado"></a></li>
-                        <!-- <a href="https://www.flaticon.com/free-icons/caps-lock" title="caps lock icons">Caps lock icons created by Dave Gandy - Flaticon</a>-->
-                        <li class="admin"><a href="#"  onclick="sair()">Sair <img src="imgs/logout.png" width="20px" alt="Ícone de saída"></a></li>
-                        <!-- <a href="https://www.flaticon.com/free-icons/log-out" title="log out icons">Log out icons created by Smashicons - Flaticon</a> -->
-                    </ul>
-                </nav>
-                <!--Menu para o celular -->
-                <img src="imgs/menuCelular.png" alt="Três traços (menu)" class="menu-celular" onclick="menucelular()">
-                <!-- <a href="https://www.flaticon.com/free-icons/hamburger" title="hamburger icons">Hamburger icons created by Hasin Almas - Flaticon</a> -->
-            </div>
-            <small id="sub_logo">artesanatos em barbante</small>
+<div id="popup-overlay" class="popup-overlay" onclick="fecharPopup(event)">
+    <div class="popup">
+        <button class="popup-fechar" onclick="fecharPopupBtn()">&#x2715;</button>
+        <h2 class="popup-titulo">Fazer Pedido</h2>
+        <p id="popup-produto-nome" class="popup-produto-nome"></p>
+        <p id="popup-produto-preco" class="popup-produto-preco"></p>
+        <div class="popup-campo"> <!-- Nome da pessoa -->
+            <label for="pedido-nome">Seu nome</label>
+            <input type="text" id="pedido-nome" placeholder="Ex: Maria Silva">
+        </div>
+        <div class="popup-campo"> <!-- Contato -->
+            <label for="pedido-telefone">WhatsApp</label>
+            <input type="tel" id="pedido-telefone" placeholder="Ex: (14) 99999-9999">
+        </div>
+        
+        <div class="popup-campo">  <!-- Unidades do produto -->
+            <label for="pedido-quantidade">Quantidade</label>
+            <input type="number" id="pedido-quantidade" min="1" value="1">
+        </div>
 
-            <!-- Banner principal -->
-            <div id="banner-principal" class="linha">
-                <div class="coll-2">
-                    <h1>Feito com carinho, <br>nó por nó</h1>
-                    <p>Peças únicas de crochê e bordado artesanal. Encomende com a sua cor preferida!</p>
-                    <br><a href="#catalogo" class="btn">Ver Catálogo &#8595;</a>
-                </div>
-                <div class="coll-2">
-                    <img src="imgs/banner-1.png" alt="Background com cesto com barbante" width="200px">
-                </div>
+        <div class="popup-campo">  <!-- Cidade (entre três opções) -->
+            <label for="pedido-cidade">Cidade</label>
+            <select id="pedido-cidade">
+                <option value="">Selecione sua cidade</option>
+                <option value="Ourinhos">Ourinhos</option>
+                <option value="Chavantes">Chavantes</option>
+                <option value="Canitar">Canitar</option>
+            </select>
+        </div>
+
+        <div class="popup-campo"> <!-- Endereço -->
+            <label for="pedido-endereco">Endereço</label>
+            <input type="text" id="pedido-endereco" placeholder="Rua, nº, Bairro">
+        </div>
+
+        <div class="popup-campo"> <!-- Observações -->
+            <label for="pedido-obs">Observações</label>
+            <textarea id="pedido-obs" rows="3" placeholder="Tamanho, personalização..."></textarea>
+        </div>
+        <button class="btn popup-btn" onclick="">Confirmar Pedido</button>
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
+ <!-- Página principal (com catálogo de produtos)-->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<div id="pagina-home">
+    <div class="categorias">
+        <div class="corpo-categorias">
+            <h2 class="titulo">Ofertas</h2> <!-- Produtos em promoção -->
+            <div class="linha" id="ofertas-grid">
+            <!-- Carregado por script-->
+            </div>       
+
+            <h2 class="titulo">produtos em Destaque</h2> <!-- Produtos destacados -->
+            <div class="linha" id="destaque-grid">
+            <!-- Carregado por script-->
             </div>
         </div>
     </div>
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-<div id="conteudo"></div> <!-- Conteúdo a ser carregado com fetch -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- Rodapé -->
-    <footer class="rodape">
-        <div class="container">
-            <div class="linha">
-                <div class="rodape-col-1">
-                    <h3>&#169 2026 Laço & Linha — Todos os direitos reservados.</h3>
-                    <div class="contato">
-                        <h2>Fale conosco</h2>
-                        <img src="imgs/whatsapp.png" alt="Logo do whatsapp" width="30px" height="30px">
-                        <!-- <a href="https://www.flaticon.com/br/icones-gratis/whatsapp" title="whatsapp ícones">Whatsapp ícones criados por Freepik - Flaticon</a> -->
-                    </div>
-                </div>
+    <div class="banner"> <!-- Banner secundário -->
+        <div class="linha">
+            <div class="col-2"><img src="imgs/banner-3.png" alt="Flor de barbante branca" width="200x"></div>
+            <!-- <a href="https://www.vecteezy.com/free-png/crochet">Crochet PNGs by Vecteezy</a> -->
+            <div class="col-2"><img src="imgs/banner-4.png" alt="Girassol de barbante" width="300px"></div>
+            <!-- <a href="https://www.vecteezy.com/free-png/crochet">Crochet PNGs by Vecteezy</a> -->
+            <div class="col-2"><img src="imgs/banner-2.png" alt="Flor de barbante vermelha" width="200px"></div>
+            <!-- <a href="https://www.vecteezy.com/free-png/crochet">Crochet PNGs by Vecteezy</a> -->
+        </div>
+    </div>
+
+    <div class="categorias">
+        <div class="corpo-categorias">
+            <h2 class="titulo" id="catalogo">Catálogo geral</h2> <!-- Todos os produtos -->
+            <div class="linha" id="catalogo-grid">
+                <!-- Carregado por script-->
             </div>
         </div>
-    </footer>
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- scrip -->
-    <script src="loja.js"></script>
-</body>
-</html>
+    </div>
+</div>
