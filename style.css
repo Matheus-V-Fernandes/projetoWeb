@@ -1,45 +1,73 @@
+/* ==========================================================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
+
+/* * Reset universal: Remove margens e preenchimentos padrão de todos os navegadores.
+ * O box-sizing: border-box garante que o padding e a borda sejam incluídos 
+ * na largura e altura totais do elemento, facilitando a criação do layout.
+ */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* * Variáveis CSS (Custom Properties): Definem a paleta de cores central do projeto.
+ * Alterar uma cor aqui atualizará todo o site automaticamente.
+ */
 :root{
-    --cor-padrao: #3b89ff;
-    --cor-padrao-hover: #f3b2e5;
-    --cor-fonte: #fff;
-    --cor-fonte-p: #555;
-    --cor-btn: #343756;
-    --cor-btn-hover: #ff9900;
-    --cor-btn-fonte: #000;
-    --cor-fonte-corpo: #555;
+    --cor-padrao: #3b89ff;       /* Cor principal (azul) usada em botões, links e detalhes */
+    --cor-padrao-hover: #f3b2e5; /* Cor secundária/destaque (rosa claro) para gradientes e tags */
+    --cor-fonte: #fff;           /* Cor para textos claros (geralmente sobre fundos escuros) */
+    --cor-fonte-p: #555;         /* Cor padrão para parágrafos (cinza escuro para melhor leitura) */
+    --cor-btn: #343756;          /* Cor de fundo dos botões principais (azul marinho) */
+    --cor-btn-hover: #ff9900;    /* Cor de fundo dos botões ao passar o mouse (laranja) */
+    --cor-btn-fonte: #000;       /* Cor do texto em áreas de navegação e rodapé */
+    --cor-fonte-corpo: #555;     /* Cor de texto para títulos e conteúdos gerais do corpo */
 }
 
+/* * Ativa a rolagem suave na página inteira ao clicar em links âncora (ex: #catalogo).
+ */
 html {
   scroll-behavior: smooth;
 }
 
+/* * Define a pilha de fontes (font-stack) principal do projeto.
+ * Prioriza fontes sem serifa (sans-serif) para um visual mais limpo e moderno.
+ */
 body{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+/* * Classe utilitária manipulada pelo JavaScript (loja.js) 
+ * Utilizada para alternar a visibilidade de elementos entre Admin e Visitante.
+ */
 .oculto {
     display: none;
 }
 
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* ==========================================================================
+   CABEÇALHO, BANNER E NAVEGAÇÃO
+   ========================================================================== */
 
+/* * Banner principal: Utiliza um fundo com gradiente radial (circular).
+ * O gradiente mistura as variáveis de cor para criar o efeito visual de destaque.
+ */
 .banner{
     background: radial-gradient(var(--cor-padrao-hover), var(--cor-padrao));
     margin-bottom: 10px;
-    min-height: 150px;
+    min-height: 150px; /* Garante que o banner não colapse se não houver conteúdo inicial */
 }
 
+/* Espaçamento superior para o conteúdo (texto e imagem) dentro do banner */
 .banner .linha{
     margin-top: 25px;
 }
 
+/* * Container principal: Limita a largura máxima do site a 1300px em telas grandes.
+ * margin: auto centraliza o bloco na tela.
+ * Paddiings laterais evitam que o conteúdo grude nas bordas em telas menores.
+ */
 .container{
     max-width: 1300px;
     margin: auto;
@@ -47,49 +75,64 @@ body{
     padding-right: 25px;
 }
 
+/* * Barra de navegação: Utiliza Flexbox para alinhar logo, menu e ícones lado a lado.
+ * align-items: center centraliza verticalmente todos os itens na barra.
+ */
 .navbar{
     display: flex;
     align-items: center;
     padding: 20px;
-    gap:10px;
+    gap:10px; /* Espaço entre os elementos da navbar */
 }
 
+/* * Elemento <nav>: Ocupa todo o espaço restante (flex: 1) e empurra 
+ * seu conteúdo (os links do menu) para o lado direito da tela.
+ */
 nav{
     flex: 1;
     text-align: right;
 }
 
+/* Remove marcadores (bolinhas) da lista não ordenada do menu */
 nav ul{
     display: inline-block;
     list-style-type: none;
 }
 
+/* Posiciona os itens do menu em linha horizontal */
 nav ul li{
     display: inline-block;
     margin-right: 20px;
 }
 
+/* Estilização dos links do menu de navegação */
 nav ul li a{
-    text-decoration: none;
+    text-decoration: none; /* Remove sublinhado padrão dos links */
     color: var(--cor-btn-fonte);
-    font-weight:600;
+    font-weight:600; /* Texto em negrito leve */
 }
 
+/* Define a cor e tamanho específicos para parágrafos dentro do banner */
 .banner p{
     color: var(--cor-fonte);
     font-size: 15px;
 }
 
+/* Estilo padrão para parágrafos em todo o site */
 p{
     color: var(--cor-fonte-p);
 }
 
+/* * Identidade visual: Logo principal do site.
+ * Utiliza uma fonte com serifa para dar um aspecto mais artesanal/clássico.
+ */
 .logo{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
+
 #nome_logo{
     text-decoration: none;
-    color:rgb(135, 101, 16);
+    color:rgb(135, 101, 16); /* Cor dourada/mostarda para a marca */
     font-size: 37px;
     font-weight: bold;
 }
@@ -99,9 +142,15 @@ p{
     font-size: 25px;
     padding-left: 9px;
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/* ==========================================================================
+   SISTEMA DE GRID BÁSICO (FLEXBOX)
+   ========================================================================== */
+
+/* * Classe base para criação de linhas do grid.
+ * flex-wrap: wrap permite que os itens quebrem para a linha de baixo se não houver espaço.
+ * justify-content: space-around distribui o espaço uniformemente entre os itens.
+ */
 .linha{
     display: flex;
     align-items: center;
@@ -109,78 +158,104 @@ p{
     justify-content: space-around;
 }
 
+/* * Coluna de 50% de largura (usada principalmente no banner principal).
+ * min-width garante que a coluna não fique fina demais antes de quebrar para baixo.
+ */
 .col-2{
     flex-basis: 50%;
     min-width: 300px;
 }
 
+/* Imagens dentro da coluna de 50% são responsivas (não ultrapassam o container) */
 .col-2 img{
     max-width: 100%;
     padding: 50px 0;
 }
 
+/* Títulos de destaque dentro da coluna do banner */
 .col-2 h1{
     font-size: 50px;
     line-height: 60px;
     margin: 25px 0;
 }
 
+/* Texto de apoio na coluna do banner */
 .col-2 p{
     font-weight: 600;
     color:var(--cor-fonte);
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/* ==========================================================================
+   BOTÕES GLOBAIS
+   ========================================================================== */
+
+/* * Botão principal arredondado (estilo "pill").
+ * transition cria uma animação suave de meio segundo ao passar o mouse.
+ */
 .btn{
     text-decoration: none;
     color: var(--cor-fonte);
     background: var(--cor-btn);
     padding: 8px 30px;
     margin: 30px 0;
-    border-radius: 30px;
-    transition: background 0.5s;
+    border-radius: 30px; /* Bordas totalmente arredondadas */
+    transition: background 0.5s; /* Animação de mudança de cor */
     border: none;       
-    outline: none; 
+    outline: none; /* Remove contorno ao clicar/focar */
 }
 
+/* Efeito Hover: Muda o fundo e a cor do texto do botão */
 .btn:hover{
     cursor: pointer;
     background: var(--cor-btn-hover);
     color:var(--cor-btn-fonte)
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/* ==========================================================================
+   CARDS DE PRODUTOS E CATÁLOGO
+   ========================================================================== */
+
+/* * Coluna de 25% de largura (ideal para 4 itens por linha no desktop).
+ * Usada na listagem de produtos da Home.
+ */
 .col-4{
     flex-basis: 25%;
     max-width: 200px;
     padding: 10px;
     margin-bottom: 50px;
-    transition: transform 0.5s;
+    transition: transform 0.5s; /* Prepara o elemento para a animação de zoom */
 }
 
+/* Efeito Hover do Card: Aumenta o tamanho do card em 10% (zoom) ao passar o mouse */
 .col-4:hover{
     transform: scale(1.1);
 }
 
+/* Espaçamento superior e inferior para as seções de categoria na Home */
 .categorias{
    margin: 50px 0; 
 }
 
+/* Container centralizado exclusivo para os blocos de categorias de produtos */
 .corpo-categorias{
     max-width: 1080px;
     margin: auto;
 }
 
+/* * Imagem do produto no card.
+ * object-fit: cover garante que a imagem preencha a área sem distorcer as proporções.
+ */
 .col-4 img{
     cursor: pointer;
     width: 100%;
     object-fit: cover;
-    object-position: center;
-    border-radius: 10px;
+    object-position: center; /* Centraliza o corte da imagem */
+    border-radius: 10px; /* Bordas levemente arredondadas na imagem */
 }
 
+/* * Títulos das seções de categorias (ex: "Destaques", "Ofertas").
+ * position: relative é necessário para posicionar a linha sublinhada (pseudo-elemento ::after).
+ */
 .titulo{
     position: relative;
     line-height: 60px;
@@ -189,6 +264,10 @@ p{
     color: var(--cor-fonte-corpo);
 }
 
+/* * Criação da linha azul decorativa abaixo dos títulos das seções.
+ * bottom: 0 joga a linha para a base do elemento.
+ * transform: translate(-50%) com left: 50% centraliza perfeitamente a linha em relação ao texto.
+ */
 .titulo::after{
     content: '';
     background-color:var(--cor-padrao);
@@ -201,17 +280,22 @@ p{
     transform:translate(-50%)
 }
 
+/* Nome do produto no card */
 h4{
     color: var(--cor-fonte-corpo);
     font-weight: normal;
 }
 
+/* Preço do produto no card */
 .col-4 p{
     font-size: 14px;
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/* ==========================================================================
+   RODAPÉ (FOOTER)
+   ========================================================================== */
+
+/* Estilização do bloco inferior do site */
 .rodape{
     background: var(--cor-btn-fonte);
     color: var(--cor-btn-fonte);
@@ -219,11 +303,15 @@ h4{
     font-size: 14px;
 }
 
+/* Título de direitos autorais */
 .rodape h3{
     color:var(--cor-fonte);
     margin-top: 20px;
 }
 
+/* * Botão de contato via WhatsApp no rodapé.
+ * Cores fixas em verde para remeter à identidade visual do WhatsApp.
+ */
 .contato{
     cursor: pointer;
     text-align: center;
@@ -234,33 +322,49 @@ h4{
 }
 
 .contato:hover{
-    background-color: rgb(0, 92, 0);
+    background-color: rgb(0, 92, 0); /* Verde mais escuro no hover */
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/* ==========================================================================
+   ÍCONE DE MENU MOBILE (HAMBÚRGUER)
+   ========================================================================== */
+
+/* * Oculta o botão de menu mobile por padrão em telas grandes.
+ * Será exibido apenas nas Media Queries de resolução menor.
+ */
 .menu-celular{
     width: 40px;
     margin-left: 40px;
     display: none;
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/* ==========================================================================
+   MODAL / POP-UP DE ENCOMENDA
+   ========================================================================== */
+
+/* * Overlay escuro que cobre toda a tela atrás do popup.
+ * position: fixed trava o overlay na tela mesmo se rolar a página.
+ * inset: 0 é um atalho moderno para top:0, right:0, bottom:0, left:0.
+ */
 .popup-overlay{
-    display: none;
+    display: none; /* Escondido por padrão, ativado pelo JS */
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
+    background: rgba(0,0,0,0.5); /* Fundo preto com 50% de transparência */
+    z-index: 1000; /* Garante que ficará sobre todos os outros elementos do site */
+    align-items: center;    /* Centraliza o modal verticalmente */
+    justify-content: center; /* Centraliza o modal horizontalmente */
 }
 
+/* Classe dinâmica injetada via JavaScript para mostrar o modal */
 .popup-overlay.ativo{
-    display: flex;
+    display: flex; 
 }
 
+/* * Caixa principal branca do formulário de pedido.
+ * position: relative permite posicionar o botão de fechar (X) em relação a esta caixa.
+ * box-shadow cria uma sombra suave para dar profundidade e destacar o popup.
+ */
 .popup{
     background: #fff;
     border-radius: 16px;
@@ -271,6 +375,7 @@ h4{
     box-shadow: 0 8px 32px rgba(0,0,0,0.18);
 }
 
+/* Botão (X) de fechar o popup, fixado no canto superior direito da caixa */
 .popup-fechar{
     position: absolute;
     top: 14px;
@@ -282,24 +387,28 @@ h4{
     color: #888;
 }
 
+/* Título principal dentro do formulário do popup ("Fazer Pedido") */
 .popup-titulo{
     font-size: 22px;
     color: var(--cor-fonte-corpo);
     margin-bottom: 6px;
 }
 
+/* Destaque para o nome do produto selecionado dentro do popup */
 .popup-produto-nome{
     font-weight: bold;
     color: var(--cor-padrao);
     font-size: 15px;
 }
 
+/* Destaque para o preço do produto selecionado dentro do popup */
 .popup-produto-preco{
     color: var(--cor-btn-hover);
     font-weight: bold;
     margin-bottom: 14px;
 }
 
+/* Agrupador de label e input para organizar cada campo do formulário em coluna */
 .popup-campo{
     margin-bottom: 14px;
     display: flex;
@@ -307,12 +416,16 @@ h4{
     gap: 4px;
 }
 
+/* Estilo dos rótulos dos campos */
 .popup-campo label{
     font-size: 13px;
     color: #555;
     font-weight: bold;
 }
 
+/* * Estilização unificada para campos de texto, áreas de texto e caixas de seleção.
+ * Herda a fonte do documento (inherit) para evitar fontes padrão diferentes nos inputs.
+ */
 .popup-campo input,
 .popup-campo textarea,
 .popup-campo select{
@@ -321,30 +434,35 @@ h4{
     border-radius: 8px;
     font-size: 14px;
     font-family: inherit;
-    outline: none;
-    transition: border 0.2s;
+    outline: none; /* Remove contorno azul feio de alguns navegadores */
+    transition: border 0.2s; /* Transição suave na cor da borda ao focar */
 }
 
+/* Impede que o usuário redimensione o campo de observações livremente, evitando quebrar o layout */
 .popup-campo textarea{
     resize: none;
 }
 
-
+/* Feedback visual: muda a cor da borda para a cor padrão (azul) quando o usuário clica no campo */
 .popup-campo input:focus,
 .popup-campo textarea:focus,
 .popup-campo select:focus{
     border-color: var(--cor-padrao);
 }
 
+/* Botão de enviar o formulário do popup (ocupa a largura inteira) */
 .popup-btn{
     cursor: pointer;
     width: 100%;
     text-align: center;
     margin-top: 6px;
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/* ==========================================================================
+   ÁREA ADMINISTRATIVA: GERENCIAMENTO DE PRODUTOS
+   ========================================================================== */
+
+/* Caixa de fundo cinza para os formulários de cadastro/edição na área do Admin */
 .produtos-form{
     background: #f9f9f9;
     border: 1px solid #eee;
@@ -353,11 +471,15 @@ h4{
     margin-top: 20px;
 }
 
+/* Título dentro do formulário de administração */
 .produtos-form h3{
     color: var(--cor-fonte-corpo);
     margin-bottom: 16px;
 }
 
+/* * Container para agrupar botões (Salvar, Cancelar).
+ * flex-wrap permite que os botões caiam para a linha de baixo em telas muito finas.
+ */
 .produtos-btns{
     display: flex;
     gap: 10px;
@@ -365,6 +487,7 @@ h4{
     flex-wrap: wrap;
 }
 
+/* Botão secundário de cancelamento na área admin */
 .btn-cancelar{
     background: #aaa;
 }
@@ -373,25 +496,30 @@ h4{
     background: #888;
 }
 
+/* Agrupador da listagem de itens cadastrados no painel administrativo */
 .produtos-lista{
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: column; /* Empilha os cards um embaixo do outro */
+    gap: 12px; /* Espaço entre os cards da lista */
     margin-bottom: 40px;
 }
 
+/* * Linha individual representando um produto no painel de administração.
+ * flex-wrap: wrap garante responsividade, empurrando as ações (editar/apagar) para baixo se necessário.
+ */
 .card-produtos{
     background: #f9f9f9;
     border: 1px solid #eee;
     border-radius: 10px;
     padding: 14px 18px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Separa as informações à esquerda dos botões à direita */
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
 }
 
+/* Informações textuais básicas do produto na lista */
 .card-produtos-info{
     font-size: 14px;
     color: #555;
@@ -401,6 +529,9 @@ h4{
     color: #333;
 }
 
+/* * Pequena etiqueta (tag) visual indicando a categoria (Destaque, Oferta, Catálogo).
+ * display: inline-block permite definir margens e paddings sem quebrar a linha de texto.
+ */
 .card-produtos-info .badge{
     display: inline-block;
     background: var(--cor-padrao);
@@ -411,11 +542,13 @@ h4{
     margin-left: 8px;
 }
 
+/* Container para alinhar os botões de ação do produto lado a lado */
 .card-produtos-acoes{
     display: flex;
     gap: 8px;
 }
 
+/* Botão pequeno de edição na linha do produto */
 .btn-editar{
     background: var(--cor-padrao);
     color: #fff;
@@ -428,9 +561,10 @@ h4{
 }
 
 .btn-editar:hover{
-    background: #1a6fd4;
+    background: #1a6fd4; /* Azul mais escuro no hover */
 }
 
+/* Área tracejada simulando um upload de imagem tipo drag-and-drop no formulário admin */
 #drop-area {
     border: 2px dashed #ccc;
     border-radius: 10px;
@@ -440,9 +574,12 @@ h4{
     cursor: pointer;
     transition: 0.3s;
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/* ==========================================================================
+   ÁREA ADMINISTRATIVA: LISTAGEM DE PEDIDOS
+   ========================================================================== */
+
+/* Agrupador vertical para os cards de pedidos recebidos */
 .lista-pedidos{
     display: flex;
     flex-direction: column;
@@ -451,6 +588,9 @@ h4{
     min-height: 250px;
 }
 
+/* * Card detalhado com as informações completas do pedido (cliente, endereço, obs).
+ * align-items: flex-start alinha o texto e o botão de apagar pelo topo da caixa.
+ */
 .card-pedido{
     background: #f9f9f9;
     border: 1px solid #eee;
@@ -458,23 +598,26 @@ h4{
     padding: 18px 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-start; 
     flex-wrap: wrap;
     gap: 10px;
 }
 
+/* Destaque para a quantidade e nome do produto encomendado */
 .card-pedido-info h4{
     color: var(--cor-padrao);
     font-weight: bold;
     margin-bottom: 4px;
 }
 
+/* Textos de detalhes do cliente (telefone, endereço, etc) */
 .card-pedido-info p{
     margin: 2px 0;
     font-size: 13px;
     color: #555;
 }
 
+/* Tag de cor secundária, usada para destacar atributos específicos no pedido */
 .card-pedido-info .tag-cor{
     display: inline-block;
     background: var(--cor-padrao-hover);
@@ -484,6 +627,9 @@ h4{
     margin-top: 6px;
 }
 
+/* * Botão de exclusão, utilizado tanto na lista de produtos quanto na de pedidos.
+ * align-self: center garante que o botão fique alinhado ao centro vertical de sua respectiva caixa.
+ */
 .btn-apagar{
     background: #e77e3c;
     color: #fff;
@@ -493,41 +639,51 @@ h4{
     cursor: pointer;
     font-size: 13px;
     transition: background 0.3s;
-    align-self: center;
+    align-self: center; 
 }
 
 .btn-apagar:hover{
-    background: #c0692b;
+    background: #c0692b; /* Laranja escuro no hover */
 }
 
+/* Estilização para o texto de fallback caso as listas via JS estejam vazias */
 .sem-itens{
     text-align: center;
     color: #aaa;
     margin-top: 40px;
     font-size: 15px;
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/* Responsividade */
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVIDADE)
+   ========================================================================== */
+
+/* * Tablets e telas médias (até 800px de largura).
+ * Transforma a navegação horizontal em um menu lateral (gaveta / dropdown mobile).
+ */
 @media only screen and (max-width:800px){
+    /* Posiciona a lista do menu sobre o conteúdo do site (absolute) */
     nav ul{
         position: absolute;
         top: 90px;
         left: 0;
-        background: var(--cor-btn);
+        background: var(--cor-btn); /* Fundo escuro do menu aberto */
         width: 100%;
-        overflow: hidden;
-        transition: max-height 0.5s;
-        z-index: 1000;      /* Coloca o menu sobre tudo */
+        overflow: hidden; /* Oculta os itens quando o max-height está em 0px (menu fechado via JS) */
+        transition: max-height 0.5s; /* Animação suave ao abrir/fechar o menu mobile */
+        z-index: 1000; /* Garante que o menu sobreponha outros elementos da tela */
         border-radius: 0 0 10px 10px;
     }
+    
+    /* Modifica os itens do menu para caírem um debaixo do outro (block) */
     nav ul li{
         display: block;
         margin-top:25px;
         margin-right: 50px;
         margin-bottom: 10px;
     }
+    
+    /* Estiliza os botões dentro do menu mobile para parecerem pequenos "botões" invertidos */
     nav ul li a{
         background-color: var(--cor-fonte);
         padding: 4px;
@@ -535,34 +691,42 @@ h4{
         font-weight: bold;
         color:var(--cor-btn-fonte);
     }
+    
+    /* Exibe o ícone de hambúrguer (menu-celular) que estava oculto na resolução desktop */
     .menu-celular{
         display: block;
         cursor: pointer;
     }
 }
 
+/* * Smartphones e telas pequenas (até 600px de largura).
+ * Adapta o layout estrutural, forçando colunas a ocuparem 100% da tela.
+ */
 @media only screen and (max-width:600px){
+    /* Centraliza o texto do banner caso a tela seja muito fina */
     .linha{
         text-align: center;
     }
 
+    /* * As colunas do banner (col-2) e dos produtos (col-4) perdem suas frações 
+     * e passam a ocupar toda a largura disponível (100%), empilhando-se umas sobre as outras.
+     */
     .col-2, .col-4{
         flex-basis: 100%;
     }
 
+    /* Reduz o tamanho da fonte principal do banner para evitar quebras abruptas no texto */
     .col-2 h1{
         font-size: 27px;
     }
 
+    /* Aumenta o tamanho do preço nos produtos para facilitar a leitura no celular */
     .col-4 p{
         font-size: 24px;
     }
 
+    /* Ajusta o espaçamento interno do formulário de pedido para caber em telas estreitas */
     .popup{
         padding: 20px 16px;
     }
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-
