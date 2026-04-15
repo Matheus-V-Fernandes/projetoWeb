@@ -13,7 +13,6 @@
     --cor-btn-hover: #ff9900;
     --cor-btn-fonte: #000;
     --cor-fonte-corpo: #555;
-    --cor-fonte-corpo-leve: #777;
 }
 
 html {
@@ -21,8 +20,13 @@ html {
 }
 
 body{
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.oculto {
+    display: none;
+}
+
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -33,7 +37,7 @@ body{
 }
 
 .banner .linha{
-    margin-top: 70px;
+    margin-top: 25px;
 }
 
 .container{
@@ -68,6 +72,7 @@ nav ul li{
 nav ul li a{
     text-decoration: none;
     color: var(--cor-btn-fonte);
+    font-weight:600;
 }
 
 .banner p{
@@ -138,6 +143,7 @@ p{
 }
 
 .btn:hover{
+    cursor: pointer;
     background: var(--cor-btn-hover);
     color:var(--cor-btn-fonte)
 }
@@ -317,6 +323,11 @@ h4{
     transition: border 0.2s;
 }
 
+.popup-campo textarea{
+    resize: none;
+}
+
+
 .popup-campo input:focus,
 .popup-campo textarea:focus,
 .popup-campo select:focus{
@@ -324,6 +335,7 @@ h4{
 }
 
 .popup-btn{
+    cursor: pointer;
     width: 100%;
     text-align: center;
     margin-top: 6px;
@@ -331,7 +343,7 @@ h4{
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-.admin-form{
+.produtos-form{
     background: #f9f9f9;
     border: 1px solid #eee;
     border-radius: 14px;
@@ -339,12 +351,13 @@ h4{
     margin-top: 20px;
 }
 
-.admin-form h3{
+.produtos-form h3{
     color: var(--cor-fonte-corpo);
     margin-bottom: 16px;
 }
 
-.admin-btns{
+.produtos-btns{
+    cursor: pointer;
     display: flex;
     gap: 10px;
     margin-top: 6px;
@@ -359,14 +372,14 @@ h4{
     background: #888;
 }
 
-.admin-lista{
+.produtos-lista{
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 40px;
 }
 
-.card-admin{
+.card-produtos{
     background: #f9f9f9;
     border: 1px solid #eee;
     border-radius: 10px;
@@ -378,16 +391,16 @@ h4{
     gap: 10px;
 }
 
-.card-admin-info{
+.card-produtos-info{
     font-size: 14px;
     color: #555;
 }
 
-.card-admin-info strong{
+.card-produtos-info strong{
     color: #333;
 }
 
-.card-admin-info .badge{
+.card-produtos-info .badge{
     display: inline-block;
     background: var(--cor-padrao);
     color: #fff;
@@ -397,7 +410,7 @@ h4{
     margin-left: 8px;
 }
 
-.card-admin-acoes{
+.card-produtos-acoes{
     display: flex;
     gap: 8px;
 }
@@ -425,11 +438,6 @@ h4{
     background: #f9f9f9;
     cursor: pointer;
     transition: 0.3s;
-}
-
-#drop-area.highlight {
-    border-color: #007bff;
-    background-color: #e7f1ff;
 }
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -509,25 +517,22 @@ h4{
         width: 100%;
         overflow: hidden;
         transition: max-height 0.5s;
-        z-index: 1000;      /* Coloca o menu na frente de qualquer título ou linha azul */
+        z-index: 1000;      /* Coloca o menu sobre tudo */
         border-radius: 0 0 10px 10px;
     }
-
     nav ul li{
         display: block;
         margin-top:25px;
         margin-right: 50px;
         margin-bottom: 10px;
     }
-
     nav ul li a{
         background-color: var(--cor-fonte);
         padding: 4px;
         border-radius: 15px;
         font-weight: bold;
-        color:var(--cor-btn);
+        color:var(--cor-btn-fonte);
     }
-
     .menu-celular{
         display: block;
         cursor: pointer;
