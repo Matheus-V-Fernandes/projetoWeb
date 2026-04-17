@@ -115,7 +115,7 @@ nav ul li a{
 /* Define a cor e tamanho específicos para parágrafos dentro do banner */
 .banner p{
     color: var(--cor-fonte);
-    font-size: 15px;
+    font-size: 20px;
 }
 
 /* Estilo padrão para parágrafos em todo o site */
@@ -133,13 +133,13 @@ p{
 #nome_logo{
     text-decoration: none;
     color:rgb(135, 101, 16); /* Cor dourada/mostarda para a marca */
-    font-size: 37px;
+    font-size: 47px;
     font-weight: bold;
 }
 
 #sub_logo{
     color:#5d5d5d;
-    font-size: 25px;
+    font-size: 30px;
     padding-left: 9px;
 }
 
@@ -177,6 +177,19 @@ p{
     font-size: 50px;
     line-height: 60px;
     margin: 25px 0;
+}
+
+/* Título do produto*/
+
+.col-4 h4{
+    font-size: 20px;
+}
+
+/* Preço no card de produto*/
+
+.col-4 h5{
+    color: var(--cor-fonte-corpo);
+    font-size: 18px;
 }
 
 /* Texto de apoio na coluna do banner */
@@ -220,7 +233,7 @@ p{
  */
 .col-4{
     flex-basis: 25%;
-    max-width: 200px;
+    max-width: 250px;
     padding: 10px;
     margin-bottom: 50px;
     transition: transform 0.5s; /* Prepara o elemento para a animação de zoom */
@@ -580,7 +593,7 @@ h4{
    ========================================================================== */
 
 /* Agrupador vertical para os cards de pedidos recebidos */
-.lista-pedidos{
+.lista-leads{
     display: flex;
     flex-direction: column;
     gap: 16px;
