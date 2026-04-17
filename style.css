@@ -202,6 +202,7 @@ p{
  * transition cria uma animação suave de meio segundo ao passar o mouse.
  */
 .btn{
+    cursor: pointer;
     text-decoration: none;
     color: var(--cor-fonte);
     background: var(--cor-btn);
@@ -575,6 +576,11 @@ h4{
 
 /* Área tracejada simulando um upload de imagem tipo drag-and-drop no formulário admin */
 #drop-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
     border: 2px dashed #ccc;
     border-radius: 10px;
     padding: 20px;
@@ -584,11 +590,25 @@ h4{
     transition: 0.3s;
 }
 
+#drop-area.drag-over {
+    border-color: var(--cor-padrao);
+    background-color: #fff8e1;
+}
+
+
+/* Imagem de pré-visualização do produto selecionado para upload no formulário admin */
+#preview-img {
+    width: 100%;
+    max-width: 200px;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
 /* ==========================================================================
-   ÁREA ADMINISTRATIVA: LISTAGEM DE PEDIDOS
+   ÁREA ADMINISTRATIVA: LISTAGEM DE LEADS
    ========================================================================== */
 
-/* Agrupador vertical para os cards de pedidos recebidos */
+/* Agrupador vertical para os cards de indicações de interesse recebidos */
 .lista-leads{
     display: flex;
     flex-direction: column;
@@ -597,10 +617,10 @@ h4{
     min-height: 250px;
 }
 
-/* * Card detalhado com as informações completas do pedido (cliente, endereço, obs).
+/* * Card detalhado com as informações completas da lead (cliente, endereço, obs).
  * align-items: flex-start alinha o texto e o botão de apagar pelo topo da caixa.
  */
-.card-pedido{
+.card-lead{
     background: #f9f9f9;
     border: 1px solid #eee;
     border-radius: 12px;
@@ -612,22 +632,22 @@ h4{
     gap: 10px;
 }
 
-/* Destaque para a quantidade e nome do produto encomendado */
-.card-pedido-info h4{
+/* Destaque para a quantidade e nome do produto */
+.card-lead-info h4{
     color: var(--cor-padrao);
     font-weight: bold;
     margin-bottom: 4px;
 }
 
 /* Textos de detalhes do cliente (telefone, endereço, etc) */
-.card-pedido-info p{
+.card-lead-info p{
     margin: 2px 0;
     font-size: 13px;
     color: #555;
 }
 
-/* Tag de cor secundária, usada para destacar atributos específicos no pedido */
-.card-pedido-info .tag-cor{
+/* Tag de cor secundária, usada para destacar atributos específicos na lead */
+.card-lead-info .tag-cor{
     display: inline-block;
     background: var(--cor-padrao-hover);
     border-radius: 20px;
