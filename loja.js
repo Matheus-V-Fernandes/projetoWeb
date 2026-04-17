@@ -293,7 +293,7 @@ function fecharPopup(e) {
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 function renderizarLeads() {
-  // Função para renderizar os pedidos Dummy na página de pedidos
+  // Função para renderizar os leads Dummy na página de leads
   var leads = getLeads()
   var lista = document.getElementById("lista-leads")
 
@@ -305,7 +305,7 @@ function renderizarLeads() {
   lista.innerHTML = leads
     .map(function (p) {
       return (
-        '<div class="card-pedido">' +
+        '<div class="card-lead">' +
         '<div class="card-lead-info">' +
         "<h4>" +
         p.quantidade +
@@ -324,7 +324,7 @@ function renderizarLeads() {
           ? "<p><strong>Endereço:</strong> " + p.endereco + "</p>"
           : "") +
         (p.obs ? "<p><strong>Obs:</strong> " + p.obs + "</p>" : "") +
-        '<p style="font-size:12px; color:#aaa; margin-top:6px">Pedido em ' +
+        '<p style="font-size:12px; color:#aaa; margin-top:6px">Registrado em ' +
         p.data +
         "</p>" +
         "</div>" +
@@ -411,7 +411,7 @@ function salvarProduto() {
   var categoria = document.getElementById("produtos-cat").value
 
   // imagem simples (por enquanto)
-  var img = "imgs/default.png"
+  var img = (document.getElementById("preview-img")).src
 
   if (!nome || !preco) {
     alert("Preencha nome e preço!")
@@ -475,6 +475,7 @@ function limparFormProduto() {
   document.getElementById("drop-text-img").textContent =
     "Arraste a imagem aqui ou clique para selecionar"
   var preview = document.getElementById("preview-img")
+  preview.src=""
   preview.style.display = "none"
 }
 
