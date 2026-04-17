@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,25 +8,23 @@
 </head>
 
 <body>
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <!-- Barra de navegação e banner principal -->
     <div class="banner">
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a id="nome_logo" href="#" onclick="mostrarPagina('home')"> Laço & Linha</a>
-                </div>
+                    <a id="nome_logo" href="#" onclick="mostrarPagina('home')"> Laço & Linha</a> 
+                </div> 
                 <nav>
                     <ul id="MenuItens"> <!-- Menu de navegação-->
                         <li><a href="#" onclick="mostrarPagina('home')">Catálogo</a></li>
-                        <li class="admin"><a href="#" onclick="mostrarPagina('pedidos')">Pedidos</a></li>
+                        <li class="admin"><a href="#" onclick="mostrarPagina('leads')">Leads</a></li>
                         <li class="admin"><a href="#" onclick="mostrarPagina('produtos')">Produtos</a></li>
-                        <li class="visitante"><a href="#" onclick="autenticar()"> Admin <img src="imgs/cadeado.png"
-                                    width="20px" alt="Ícone de cadeado"></a></li>
+                        <li class="visitante" ><a href="#" onclick="autenticar()"> Admin <img src="imgs/cadeado.png" width="20px" alt="Ícone de cadeado"></a></li>
                         <!-- <a href="https://www.flaticon.com/free-icons/caps-lock" title="caps lock icons">Caps lock icons created by Dave Gandy - Flaticon</a>-->
-                        <li class="admin"><a href="#" onclick="sair()">Sair <img src="imgs/logout.png" width="20px"
-                                    alt="Ícone de saída"></a></li>
+                        <li class="admin"><a href="#"  onclick="sair()">Sair <img src="imgs/logout.png" width="20px" alt="Ícone de saída"></a></li>
                         <!-- <a href="https://www.flaticon.com/free-icons/log-out" title="log out icons">Log out icons created by Smashicons - Flaticon</a> -->
                     </ul>
                 </nav>
@@ -45,17 +42,18 @@
                     <br><a href="#catalogo" class="btn">Ver Catálogo &#8595;</a>
                 </div>
                 <div class="col-2">
-                    <img src="imgs/banner-1.png" alt="Background com cesto com barbante" width="200px">
+                    <img src="imgs/banner-1.png" alt="Background com cesto com barbante" width="250px">
+                    <!-- <a href="https://www.vecteezy.com/free-png/crochet">Crochet PNGs by Vecteezy</a> -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-    <div id="conteudo"></div> <!-- Conteúdo a ser carregado com fetch -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<div id="conteudo"></div> <!-- Conteúdo a ser carregado com fetch -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <!-- Rodapé -->
     <footer class="rodape">
         <div class="container">
@@ -71,10 +69,9 @@
             </div>
         </div>
     </footer>
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <!-- scrip -->
     <script src="loja.js"></script>
 </body>
-
 </html>
