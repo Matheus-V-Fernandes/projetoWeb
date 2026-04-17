@@ -56,12 +56,7 @@ body{
 .banner{
     background: radial-gradient(var(--cor-padrao-hover), var(--cor-padrao));
     margin-bottom: 10px;
-    min-height: 150px; /* Garante que o banner não colapse se não houver conteúdo inicial */
-}
-
-/* Espaçamento superior para o conteúdo (texto e imagem) dentro do banner */
-.banner .linha{
-    margin-top: 25px;
+    min-height: 200px; /* Garante que o banner não colapse se não houver conteúdo inicial */
 }
 
 /* * Container principal: Limita a largura máxima do site a 1300px em telas grandes.
@@ -107,6 +102,7 @@ nav ul li{
 
 /* Estilização dos links do menu de navegação */
 nav ul li a{
+    font-size: 20px;
     text-decoration: none; /* Remove sublinhado padrão dos links */
     color: var(--cor-btn-fonte);
     font-weight:600; /* Texto em negrito leve */
@@ -115,7 +111,7 @@ nav ul li a{
 /* Define a cor e tamanho específicos para parágrafos dentro do banner */
 .banner p{
     color: var(--cor-fonte);
-    font-size: 20px;
+    font-size: 17px;
 }
 
 /* Estilo padrão para parágrafos em todo o site */
@@ -133,13 +129,13 @@ p{
 #nome_logo{
     text-decoration: none;
     color:rgb(135, 101, 16); /* Cor dourada/mostarda para a marca */
-    font-size: 47px;
+    font-size: 42px;
     font-weight: bold;
 }
 
 #sub_logo{
     color:#5d5d5d;
-    font-size: 30px;
+    font-size: 25px;
     padding-left: 9px;
 }
 
@@ -174,7 +170,7 @@ p{
 
 /* Títulos de destaque dentro da coluna do banner */
 .col-2 h1{
-    font-size: 50px;
+    font-size: 40px;
     line-height: 60px;
     margin: 25px 0;
 }
