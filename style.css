@@ -575,6 +575,11 @@ h4{
 
 /* Área tracejada simulando um upload de imagem tipo drag-and-drop no formulário admin */
 #drop-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
     border: 2px dashed #ccc;
     border-radius: 10px;
     padding: 20px;
@@ -584,6 +589,21 @@ h4{
     transition: 0.3s;
 }
 
+
+#drop-area.drag-over {
+    border-color: var(--cor-padrao);
+    background-color: #fff8e1;
+}
+
+
+/* Imagem de pré-visualização do produto selecionado para upload no formulário admin */
+#preview-img {
+    width: 100%;
+    max-width: 200px;
+    height: 200px;
+    object-fit: cover; /* 🔥 ESSENCIAL */
+    border-radius: 8px;
+}
 /* ==========================================================================
    ÁREA ADMINISTRATIVA: LISTAGEM DE PEDIDOS
    ========================================================================== */
