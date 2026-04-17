@@ -1,6 +1,6 @@
 # Laço & Linha — Loja de Artesanato
 
-Aplicação web simples para gerenciamento e exibição de produtos artesanais, com sistema de pedidos e painel administrativo básico.
+Aplicação web simples para gerenciamento e exibição de produtos artesanais, com sistema de manifestação de interesse por produto e painel administrativo básico.
 
 ---
 
@@ -10,7 +10,7 @@ O projeto **Laço & Linha** é uma aplicação web (no momento, apenas com front
 
 Ele se propõe a permitir:
 * visualizar produtos
-* realizar pedidos
+* manifestar interesse pela compra de produtos
 * gerenciar produtos (modo administrador)
 
 ## Funcionalidades almejadas
@@ -23,7 +23,7 @@ Ele se propõe a permitir:
   * Destaques
   * Ofertas
   * Catálogo geral
-* Realizar pedidos via formulário (popup)
+* Manifestar interesse via formulário (popup)
 
 ---
 
@@ -33,7 +33,7 @@ Ele se propõe a permitir:
 * Criar novos produtos
 * Editar produtos existentes
 * Remover produtos
-* Visualizar pedidos
+* Visualizar Leads (manifestações de interesse)
 * Excluir pedidos
 
 ---
@@ -52,7 +52,7 @@ Ele se propõe a permitir:
 │
 └── paginas/
     ├── home.html
-    ├── pedidos.html
+    ├── leads.html
     └── produtos.html
 ```
 
@@ -63,7 +63,7 @@ Ele se propõe a permitir:
 Os dados são apenas dummies de:
 
 * lista de produtos
-* lista de pedidos
+* lista de leads
 
 ---
 
@@ -81,7 +81,7 @@ Os dados são apenas dummies de:
 * Implementar backend
 * Sistema de autenticação seguro
 * Integração com banco de dados
-* Integração com WhatsApp para pedidos
+* Integração com WhatsApp para manifestações de interesse
 * Upload real de imagens
 * Responsividade aprimorada
 
