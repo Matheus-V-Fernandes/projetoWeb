@@ -1,30 +1,30 @@
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- Pop-up de pedido -->
+<!-- Pop-up de demostração de interesse -->
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <div id="popup-overlay" class="popup-overlay" onclick="fecharPopup(event)">
     <div class="popup">
         <button class="popup-fechar" onclick="fecharPopupBtn()">&#x2715;</button>
-        <h2 class="popup-titulo">Fazer Pedido</h2>
+        <h2 class="popup-titulo">Manifestar interesse</h2>
         <p id="popup-produto-nome" class="popup-produto-nome"></p>
         <p id="popup-produto-preco" class="popup-produto-preco"></p>
         <div class="popup-campo"> <!-- Nome da pessoa -->
-            <label for="pedido-nome">Seu nome</label>
-            <input type="text" id="pedido-nome" placeholder="Ex: Maria Silva">
+            <label for="lead-nome">Seu nome</label>
+            <input type="text" id="lead-nome" placeholder="Ex: Maria Silva">
         </div>
         <div class="popup-campo"> <!-- Contato -->
-            <label for="pedido-telefone">WhatsApp</label>
-            <input type="tel" id="pedido-telefone" placeholder="Ex: (14) 99999-9999">
+            <label for="lead-telefone">WhatsApp</label>
+            <input type="tel" id="lead-telefone" placeholder="Ex: (14) 99999-9999">
         </div>
         
         <div class="popup-campo">  <!-- Unidades do produto -->
-            <label for="pedido-quantidade">Quantidade</label>
-            <input type="number" id="pedido-quantidade" min="1" value="1">
+            <label for="lead-quantidade">Quantidade</label>
+            <input type="number" id="lead-quantidade" min="1" value="1">
         </div>
 
         <div class="popup-campo">  <!-- Cidade (entre três opções) -->
-            <label for="pedido-cidade">Cidade</label>
-            <select id="pedido-cidade">
+            <label for="lead-cidade">Cidade</label>
+            <select id="lead-cidade">
                 <option value="">Selecione sua cidade</option>
                 <option value="Ourinhos">Ourinhos</option>
                 <option value="Chavantes">Chavantes</option>
@@ -33,15 +33,15 @@
         </div>
 
         <div class="popup-campo"> <!-- Endereço -->
-            <label for="pedido-endereco">Endereço</label>
-            <input type="text" id="pedido-endereco" placeholder="Rua, nº, Bairro">
+            <label for="lead-endereco">Endereço</label>
+            <input type="text" id="lead-endereco" placeholder="Rua, nº, Bairro">
         </div>
 
         <div class="popup-campo"> <!-- Observações -->
-            <label for="pedido-obs">Observações</label>
-            <textarea id="pedido-obs" rows="3" placeholder="Tamanho, personalização..."></textarea>
+            <label for="lead-obs">Observações</label>
+            <textarea id="lead-obs" rows="3" placeholder="Tamanho, personalização..."></textarea>
         </div>
-        <button class="btn popup-btn" onclick="">Confirmar Pedido</button>
+        <button class="btn popup-btn" onclick="">Confirmar</button>
     </div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -56,7 +56,7 @@
             <!-- Carregado por script-->
             </div>       
 
-            <h2 class="titulo">produtos em Destaque</h2> <!-- Produtos destacados -->
+            <h2 class="titulo">Produtos em Destaque</h2> <!-- Produtos destacados -->
             <div class="linha" id="destaque-grid">
             <!-- Carregado por script-->
             </div>
