@@ -20,11 +20,11 @@
                 </div>
                 <div class="popup-campo"> <!-- Imagem -->
                     <label>Imagem</label>
-                <div id="drop-area">
-                    <p>Arraste a imagem aqui ou clique para selecionar</p>
-                    <input type="file" id="produtos-file" accept="image/*" hidden>
-                    <img id="preview-img" src="#" alt="Prévia" style="display:none;">
-                </div>
+                    <div id="drop-area">
+                        <p id="drop-text-img">Arraste a imagem aqui ou clique para selecionar</p>
+                        <input type="file" id="produtos-file" accept="image/*" hidden>
+                        <img id="preview-img" src="#" alt="Prévia" style="display:none;">
+                    </div>
                 </div>
                 <div class="popup-campo"> <!-- Alt da Imagem -->
                     <label>Descrição da imagem</label>
@@ -39,8 +39,8 @@
                     </select>
                 </div>
                 <div class="produtos-btns"> <!-- Botões de salvamento e limpeza do formulário -->
-                    <button class="btn" onclick="">Salvar Produto</button>
-                    <button class="btn btn-cancelar" onclick="">Limpar</button>
+                    <button class="btn" onclick="salvarProduto()">Salvar Produto</button>
+                    <button class="btn btn-cancelar" onclick="limparFormProduto()">Limpar</button>
                 </div>
             </div> <!-- Fim do formulário -->
 
