@@ -32,7 +32,7 @@ function getProdutos(){ // Produtos padrão
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-function getPedidos(){ // Pedidos padrão
+function getLeads(){ // Demonstrações de interesse padrão
     return [
         { id: 1, produto: "Tapete redondo de flor (Azul)", preco: 39.99, nome: "Carlos Magno",  telefone: "(14) 99712-8750", quantidade: 1, cidade: "Ourinhos", endereco: "Rua X, nºY, Bairro Z", obs:"Nenhuma", data: "15/04/2026"},
         { id: 1, produto: "Pano de prato natalino", preco: 39.98, nome: "Maria Silva",  telefone: "(14) 99722-8340", quantidade: 2, cidade: "Chavantes", endereco: "Rua A, nºB, Bairro C", obs:"NenhLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et ex sed quam efficitur mattis.", data: "13/04/2026"},
@@ -82,9 +82,9 @@ async function mostrarPagina(pagina){ // Função para renderização das inform
         await load('paginas/home.html') // Carregamento da home 
         document.getElementById("banner-principal").style.display = "flex"; // Mostra banner principal
         renderizarHome(); // Renderização do catálogo de produtos da home
-    }else if(pagina === "pedidos"){
-        await load('paginas/pedidos.html') // Carregamento da página de visualização de pedidos
-        renderizarPedidos();
+    }else if(pagina === "leads"){
+        await load('paginas/leads.html') // Carregamento da página de visualização de lead-4s
+        renderizarLeads();
     }else if(pagina === "produtos"){
         await load('paginas/produtos.html') // Carregamento da página de gerenciamento de produtos
         renderizarProdutos();
@@ -100,7 +100,7 @@ function cardProduto(p){ // Estrutura do card de produto
     return `<div class="col-4" onclick="abrirPopup(${p.id})">
             <img src="${p.img}" alt="${p.alt}">
             <h4>${p.nome}</h4>
-            <p>R$ ${p.preco.toFixed(2)}</p>
+            <h5>R$ ${p.preco.toFixed(2)}</h5>
         </div>
     `;
 }
@@ -122,7 +122,7 @@ function renderizarHome(){ // Função para renderizar os produtos Dummy na home
 }
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-// Pop-up de pedido
+// Pop-up de demonstração de interesse
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 var produtoAtual = null;
@@ -137,12 +137,12 @@ function abrirPopup(id){
     produtoAtual = produto;
     document.getElementById("popup-produto-nome").textContent = produto.nome;
     document.getElementById("popup-produto-preco").textContent = "R$ " + produto.preco.toFixed(2);
-    document.getElementById("pedido-nome").value = "";
-    document.getElementById("pedido-telefone").value = "";
-    document.getElementById("pedido-quantidade").value = "";
-    document.getElementById("pedido-cidade").value = "";
-    document.getElementById("pedido-endereco").value = "";
-    document.getElementById("pedido-obs").value = "";
+    document.getElementById("lead-nome").value = "";
+    document.getElementById("lead-telefone").value = "";
+    document.getElementById("lead-quantidade").value = "";
+    document.getElementById("lead-cidade").value = "";
+    document.getElementById("lead-endereco").value = "";
+    document.getElementById("lead-obs").value = "";
 
     document.getElementById("popup-overlay").classList.add("ativo");
 }
@@ -157,20 +157,20 @@ function fecharPopup(e){
         fecharPopupBtn();
 }
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-// Renderização de pedidos
+// Renderização de indicações de interesse
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-function renderizarPedidos(){  // Função para renderizar os pedidos Dummy na página de pedidos
-    var pedidos = getPedidos();
-    var lista = document.getElementById("lista-pedidos");
+function renderizarLeads(){  // Função para renderizar os pedidos Dummy na página de pedidos
+    var leads = getLeads();
+    var lista = document.getElementById("lista-leads");
 
-    if(pedidos.length === 0){
-        lista.innerHTML = '<p class="sem-itens">Nenhum pedido registrado ainda.</p>';
+    if(leads.length === 0){
+        lista.innerHTML = '<p class="sem-itens">Nenhuma indicação de interesse registrada ainda.</p>';
         return;
     }
-    lista.innerHTML = pedidos.map(function(p){
+    lista.innerHTML = leads.map(function(p){
         return '<div class="card-pedido">' +
-            '<div class="card-pedido-info">' +
+            '<div class="card-lead-info">' +
                 '<h4>' + p.quantidade + ' un. - ' + p.produto + ' — R$ ' + (p.preco*p.quantidade).toFixed(2) + '</h4>' +
                 '<p><strong>Cliente:</strong> ' + p.nome + ' | <strong>Tel:</strong> ' + p.telefone + '</p>' +
                 (p.cidade ? '<p><strong>Cidade:</strong> ' + p.cidade + '</p>' : '') +
@@ -178,7 +178,7 @@ function renderizarPedidos(){  // Função para renderizar os pedidos Dummy na p
                 (p.obs ? '<p><strong>Obs:</strong> ' + p.obs + '</p>' : '') +
                 '<p style="font-size:12px; color:#aaa; margin-top:6px">Pedido em ' + p.data + '</p>' +
             '</div>' +
-            '<button class="btn-apagar" onclick="apagarPedido(' + p.id + ')">&#x1F5D1; Apagar</button>' +
+            '<button class="btn-apagar" onclick="">&#x1F5D1; Apagar</button>' +
         '</div>';
     }).join("");
 }
