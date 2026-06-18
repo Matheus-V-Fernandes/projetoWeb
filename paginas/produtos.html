@@ -1,11 +1,11 @@
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- Página de gerenciamento dos produtos -->
+<!-- Página de gerenciamento -->
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <div id="pagina-produtos">
     <div class="categorias">
         <div class="corpo-categorias">
-            <h2 class="titulo">Gerenciar Produtos</h2>
+            <h2 class="titulo">Gerenciar</h2>
 
             <div class="produtos-form"> <!-- Formulário para registro e edição de produtos -->
                 <h3>Adicionar / Editar Produto</h3>
@@ -48,6 +48,14 @@
             <div id="produtos-lista-produtos" class="produtos-lista"> 
                 <!-- gerado pelo JS -->
             </div>
+
+            <!-- Seção de segurança -->
+            <div class="produtos-form secao-senha">
+                <h3>🔑 Segurança</h3>
+                <p style="font-size:14px; color:#777; margin-bottom:16px">Altere a senha de acesso ao painel administrativo.</p>
+                <button class="btn btn-senha" onclick="abrirModalAlterarSenha()">Alterar Senha</button>
+            </div>
+
         </div>
     </div>
 </div>
