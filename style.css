@@ -16,14 +16,14 @@
  * Alterar uma cor aqui atualizará todo o site automaticamente.
  */
 :root{
-    --cor-padrao: #3b89ff;       /* Cor principal (azul) usada em botões, links e detalhes */
-    --cor-padrao-hover: #f3b2e5; /* Cor secundária/destaque (rosa claro) para gradientes e tags */
-    --cor-fonte: #fff;           /* Cor para textos claros (geralmente sobre fundos escuros) */
-    --cor-fonte-p: #555;         /* Cor padrão para parágrafos (cinza escuro para melhor leitura) */
-    --cor-btn: #343756;          /* Cor de fundo dos botões principais (azul marinho) */
-    --cor-btn-hover: #ff9900;    /* Cor de fundo dos botões ao passar o mouse (laranja) */
-    --cor-btn-fonte: #000;       /* Cor do texto em áreas de navegação e rodapé */
-    --cor-fonte-corpo: #555;     /* Cor de texto para títulos e conteúdos gerais do corpo */
+    --cor-padrao: #2C3E50;       /* Cor principal (azul escuro) usada em botões, links e detalhes */
+    --cor-padrao-hover: #18BC9C; /* Cor secundária/destaque (verde esmeralda) para gradientes e tags */
+    --cor-fonte: #FFFFFF;           /* Cor para textos claros (geralmente sobre fundos escuros) */
+    --cor-fonte-p: #34495E;         /* Cor padrão para parágrafos (cinza azulado escuro para melhor leitura) */
+    --cor-btn: #050505;          /* Cor de fundo dos botões principais (cinza azulado escuro) */
+    --cor-btn-hover: #1a1c1b;    /* Cor de fundo dos botões ao passar o mouse (verde esmeralda) */
+    --cor-btn-fonte: #FFFFFF;       /* Cor do texto em áreas de navegação e rodapé */
+    --cor-fonte-corpo: #2C3E50;     /* Cor de texto para títulos e conteúdos gerais do corpo */
 }
 
 /* * Ativa a rolagem suave na página inteira ao clicar em links âncora (ex: #catalogo).
@@ -128,13 +128,13 @@ p{
 
 #nome_logo{
     text-decoration: none;
-    color:rgb(135, 101, 16); /* Cor dourada/mostarda para a marca */
+    color: #F39C12; /* Laranja forte para contraste na marca */
     font-size: 42px;
     font-weight: bold;
 }
 
 #sub_logo{
-    color:#5d5d5d;
+    color: #aed7ff; /* Cinza azulado escuro para o subtítulo */
     font-size: 25px;
     padding-left: 9px;
 }
@@ -173,6 +173,7 @@ p{
     font-size: 40px;
     line-height: 60px;
     margin: 25px 0;
+    color: var(--cor-fonte); /* Garantindo contraste no banner escuro */
 }
 
 /* Título do produto*/
@@ -307,7 +308,7 @@ h4{
 
 /* Estilização do bloco inferior do site */
 .rodape{
-    background: var(--cor-btn-fonte);
+    background: #303234; /* Cinza azulado escuro para o rodapé */
     color: var(--cor-btn-fonte);
     padding: 40px 0px;
     font-size: 14px;
@@ -328,11 +329,11 @@ h4{
     margin-top: 20px;
     font-size: 10px;
     border-radius: 20px;
-    background-color: green;
+    background-color: #1ffa23; /* Verde esmeralda forte */
 }
 
 .contato:hover{
-    background-color: rgb(0, 92, 0); /* Verde mais escuro no hover */
+    background-color: #96f02f; /* Verde mais escuro no hover */
 }
 
 /* ==========================================================================
@@ -360,7 +361,7 @@ h4{
     display: none; /* Escondido por padrão, ativado pelo JS */
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5); /* Fundo preto com 50% de transparência */
+    background: rgba(44, 62, 80, 0.7); /* Fundo escuro azulado com transparência */
     z-index: 1000; /* Garante que ficará sobre todos os outros elementos do site */
     align-items: center;    /* Centraliza o modal verticalmente */
     justify-content: center; /* Centraliza o modal horizontalmente */
@@ -376,13 +377,13 @@ h4{
  * box-shadow cria uma sombra suave para dar profundidade e destacar o popup.
  */
 .popup{
-    background: #fff;
+    background: #FFFFFF;
     border-radius: 16px;
     padding: 30px;
     width: 90%;
     max-width: 440px;
     position: relative;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
 }
 
 /* Botão (X) de fechar o popup, fixado no canto superior direito da caixa */
@@ -394,7 +395,7 @@ h4{
     border: none;
     font-size: 20px;
     cursor: pointer;
-    color: #888;
+    color: #7F8C8D; /* Cinza médio */
 }
 
 /* Título principal dentro do formulário do popup ("Fazer Pedido") */
@@ -413,7 +414,7 @@ h4{
 
 /* Destaque para o preço do produto selecionado dentro do popup */
 .popup-produto-preco{
-    color: var(--cor-btn-hover);
+    color: var(--cor-padrao-hover);
     font-weight: bold;
     margin-bottom: 14px;
 }
@@ -429,7 +430,7 @@ h4{
 /* Estilo dos rótulos dos campos */
 .popup-campo label{
     font-size: 13px;
-    color: #555;
+    color: #34495E;
     font-weight: bold;
 }
 
@@ -440,7 +441,7 @@ h4{
 .popup-campo textarea,
 .popup-campo select{
     padding: 8px 12px;
-    border: 1.5px solid #ddd;
+    border: 1.5px solid #BDC3C7; /* Cinza claro */
     border-radius: 8px;
     font-size: 14px;
     font-family: inherit;
@@ -453,7 +454,7 @@ h4{
     resize: none;
 }
 
-/* Feedback visual: muda a cor da borda para a cor padrão (azul) quando o usuário clica no campo */
+/* Feedback visual: muda a cor da borda para a cor padrão quando o usuário clica no campo */
 .popup-campo input:focus,
 .popup-campo textarea:focus,
 .popup-campo select:focus{
@@ -474,8 +475,8 @@ h4{
 
 /* Caixa de fundo cinza para os formulários de cadastro/edição na área do Admin */
 .produtos-form{
-    background: #f9f9f9;
-    border: 1px solid #eee;
+    background: #ECF0F1; /* Cinza super claro */
+    border: 1px solid #BDC3C7;
     border-radius: 14px;
     padding: 24px;
     margin-top: 20px;
@@ -499,11 +500,11 @@ h4{
 
 /* Botão secundário de cancelamento na área admin */
 .btn-cancelar{
-    background: #aaa;
+    background: #95A5A6; /* Cinza neutro */
 }
 
 .btn-cancelar:hover{
-    background: #888;
+    background: #7F8C8D;
 }
 
 /* Agrupador da listagem de itens cadastrados no painel administrativo */
@@ -518,8 +519,8 @@ h4{
  * flex-wrap: wrap garante responsividade, empurrando as ações (editar/apagar) para baixo se necessário.
  */
 .card-produtos{
-    background: #f9f9f9;
-    border: 1px solid #eee;
+    background: #FFFFFF;
+    border: 1px solid #BDC3C7;
     border-radius: 10px;
     padding: 14px 18px;
     display: flex;
@@ -532,11 +533,11 @@ h4{
 /* Informações textuais básicas do produto na lista */
 .card-produtos-info{
     font-size: 14px;
-    color: #555;
+    color: #34495E;
 }
 
 .card-produtos-info strong{
-    color: #333;
+    color: #2C3E50;
 }
 
 /* * Pequena etiqueta (tag) visual indicando a categoria (Destaque, Oferta, Catálogo).
@@ -545,7 +546,7 @@ h4{
 .card-produtos-info .badge{
     display: inline-block;
     background: var(--cor-padrao);
-    color: #fff;
+    color: #FFFFFF;
     font-size: 11px;
     border-radius: 20px;
     padding: 2px 10px;
@@ -561,7 +562,7 @@ h4{
 /* Botão pequeno de edição na linha do produto */
 .btn-editar{
     background: var(--cor-padrao);
-    color: #fff;
+    color: #FFFFFF;
     border: none;
     border-radius: 20px;
     padding: 5px 16px;
@@ -571,7 +572,7 @@ h4{
 }
 
 .btn-editar:hover{
-    background: #1a6fd4; /* Azul mais escuro no hover */
+    background: #1A252F; /* Cor mais escura no hover */
 }
 
 /* Área tracejada simulando um upload de imagem tipo drag-and-drop no formulário admin */
@@ -581,18 +582,18 @@ h4{
     align-items: center;
     gap: 10px;
 
-    border: 2px dashed #ccc;
+    border: 2px dashed #BDC3C7;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    background: #f9f9f9;
+    background: #ECF0F1;
     cursor: pointer;
     transition: 0.3s;
 }
 
 #drop-area.drag-over {
     border-color: var(--cor-padrao);
-    background-color: #fff8e1;
+    background-color: #E8F8F5; /* Fundo verde clarinho */
 }
 
 
@@ -621,8 +622,8 @@ h4{
  * align-items: flex-start alinha o texto e o botão de apagar pelo topo da caixa.
  */
 .card-lead{
-    background: #f9f9f9;
-    border: 1px solid #eee;
+    background: #FFFFFF;
+    border: 1px solid #BDC3C7;
     border-radius: 12px;
     padding: 18px 20px;
     display: flex;
@@ -643,13 +644,14 @@ h4{
 .card-lead-info p{
     margin: 2px 0;
     font-size: 13px;
-    color: #555;
+    color: #34495E;
 }
 
 /* Tag de cor secundária, usada para destacar atributos específicos na lead */
 .card-lead-info .tag-cor{
     display: inline-block;
     background: var(--cor-padrao-hover);
+    color: #FFFFFF; /* Adicionado para garantir leitura na tag */
     border-radius: 20px;
     padding: 2px 10px;
     font-size: 12px;
@@ -660,8 +662,8 @@ h4{
  * align-self: center garante que o botão fique alinhado ao centro vertical de sua respectiva caixa.
  */
 .btn-apagar{
-    background: #e77e3c;
-    color: #fff;
+    background: #E74C3C; /* Vermelho alaranjado */
+    color: #FFFFFF;
     border: none;
     border-radius: 20px;
     padding: 6px 18px;
@@ -672,13 +674,13 @@ h4{
 }
 
 .btn-apagar:hover{
-    background: #c0692b; /* Laranja escuro no hover */
+    background: #C0392B; /* Vermelho mais escuro no hover */
 }
 
 /* Estilização para o texto de fallback caso as listas via JS estejam vazias */
 .sem-itens{
     text-align: center;
-    color: #aaa;
+    color: #95A5A6;
     margin-top: 40px;
     font-size: 15px;
 }
@@ -692,7 +694,7 @@ h4{
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.55);
+    background: rgba(44, 62, 80, 0.75);
     z-index: 2000;
     align-items: center;
     justify-content: center;
@@ -704,13 +706,13 @@ h4{
 
 /* Caixa central do modal de login */
 .modal-auth{
-    background: #fff;
+    background: #FFFFFF;
     border-radius: 16px;
     padding: 32px 28px 24px;
     width: 90%;
     max-width: 380px;
     position: relative;
-    box-shadow: 0 8px 36px rgba(0,0,0,0.22);
+    box-shadow: 0 8px 36px rgba(44, 62, 80, 0.22);
 }
 
 .modal-auth h2{
@@ -721,13 +723,13 @@ h4{
 
 /* Botão de alterar senha — variação discreta do btn padrão */
 .btn-senha{
-    background: #7c5cbf;
+    background: #8E44AD; /* Roxo vibrante */
     margin-top: 0;
 }
 
 .btn-senha:hover{
-    background: #5a3f99;
-    color: #fff;
+    background: #732D91; /* Roxo escuro */
+    color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -746,7 +748,7 @@ h4{
 /* Pastilha colorida de status */
 .badge-status{
     display: inline-block;
-    color: #fff;
+    color: #FFFFFF;
     font-size: 11px;
     font-weight: bold;
     border-radius: 20px;
@@ -773,13 +775,13 @@ h4{
 /* Select de troca de status */
 .select-status{
     padding: 6px 10px;
-    border: 1.5px solid #ddd;
+    border: 1.5px solid #BDC3C7;
     border-radius: 20px;
     font-size: 13px;
     font-family: inherit;
     cursor: pointer;
     outline: none;
-    background: #fff;
+    background: #FFFFFF;
     transition: border 0.2s;
 }
 
@@ -790,7 +792,7 @@ h4{
 /* Seção de segurança no final da página Gerenciar */
 .secao-senha{
     margin-top: 40px;
-    border-top: 2px solid #eee;
+    border-top: 2px solid #ECF0F1;
     padding-top: 24px;
 }
 
