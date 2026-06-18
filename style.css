@@ -684,6 +684,121 @@ h4{
 }
 
 /* ==========================================================================
+   MODAL DE AUTENTICAÇÃO
+   ========================================================================== */
+
+/* Overlay do modal de login — mesmo padrão do popup de encomenda */
+.modal-auth-overlay{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-auth-overlay.ativo{
+    display: flex;
+}
+
+/* Caixa central do modal de login */
+.modal-auth{
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px 24px;
+    width: 90%;
+    max-width: 380px;
+    position: relative;
+    box-shadow: 0 8px 36px rgba(0,0,0,0.22);
+}
+
+.modal-auth h2{
+    color: var(--cor-fonte-corpo);
+    margin-bottom: 18px;
+    font-size: 20px;
+}
+
+/* Botão de alterar senha — variação discreta do btn padrão */
+.btn-senha{
+    background: #7c5cbf;
+    margin-top: 0;
+}
+
+.btn-senha:hover{
+    background: #5a3f99;
+    color: #fff;
+}
+
+/* ==========================================================================
+   STATUS DOS PEDIDOS (LEADS)
+   ========================================================================== */
+
+/* Cabeçalho do card de lead com nome do produto e badge lado a lado */
+.card-lead-header{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+/* Pastilha colorida de status */
+.badge-status{
+    display: inline-block;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 3px 12px;
+    white-space: nowrap;
+}
+
+/* Área lateral do card de lead com status + botão apagar */
+.card-lead-acoes{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    min-width: 160px;
+}
+
+/* Bloco que agrupa o label e o select de status */
+.card-lead-status{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* Select de troca de status */
+.select-status{
+    padding: 6px 10px;
+    border: 1.5px solid #ddd;
+    border-radius: 20px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+    background: #fff;
+    transition: border 0.2s;
+}
+
+.select-status:focus{
+    border-color: var(--cor-padrao);
+}
+
+/* Seção de segurança no final da página Gerenciar */
+.secao-senha{
+    margin-top: 40px;
+    border-top: 2px solid #eee;
+    padding-top: 24px;
+}
+
+.secao-senha .btn-senha{
+    margin: 0;
+}
+
+/* ==========================================================================
    MEDIA QUERIES (RESPONSIVIDADE)
    ========================================================================== */
 
