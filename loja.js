@@ -799,9 +799,31 @@ function configurarDropImage() {
   function mostrarPreview(file) {
     var reader = new FileReader()
     reader.onload = function (e) {
-      preview.src = e.target.result
-      preview.style.display = "block"
-      texto.textContent = "Imagem carregada! (Clique para trocar)"
+      // 1. Cria uma imagem virtual para testar o tamanho
+      var imgTeste = new Image();
+      imgTeste.src = e.target.result;
+
+      imgTeste.onload = function() {
+        // 2. Define o limite máximo permitido
+        var larguraMaxima = 800; 
+        var alturaMaxima = 800;  
+
+        // 3. Faz a validação
+        if (imgTeste.width > larguraMaxima || imgTeste.height > alturaMaxima) {
+          alert(`Imagem recusada! O limite é ${larguraMaxima}x${alturaMaxima} pixels. A sua tem ${imgTeste.width}x${imgTeste.height}.`);
+          
+          // Limpa tudo se for muito grande
+          inputFile.value = ""; 
+          preview.src = "";
+          preview.style.display = "none";
+          texto.textContent = "Arraste a imagem aqui ou clique para selecionar";
+        } else {
+          // 4. Se passar no teste, exibe a imagem
+          preview.src = e.target.result;
+          preview.style.display = "block";
+          texto.textContent = "Imagem carregada! (Clique para trocar)";
+        }
+      };
     }
     reader.readAsDataURL(file)
   }
