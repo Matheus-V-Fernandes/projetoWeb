@@ -1,6 +1,6 @@
 # Laço & Linha — Loja de Artesanato
 
-Aplicação web para gerenciamento e exibição de produtos artesanais, com sistema de manifestação de interesse por produto, painel administrativo e integração com WhatsApp.
+Aplicação web para gerenciamento e exibição de produtos artesanais, com sistema de manifestação de interesse por produto e painel administrativo.
 
 ---
 
@@ -16,7 +16,6 @@ O projeto **Laço & Linha** é uma aplicação web full-stack para uma loja virt
 - Visualizar catálogo de produtos
 - Filtrar por Destaques, Ofertas e Catálogo geral
 - Manifestar interesse via formulário (popup)
-- Mensagem automática enviada ao WhatsApp da loja ao confirmar interesse
 
 ### Administrador
 - Login seguro com e-mail e senha
