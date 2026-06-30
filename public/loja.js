@@ -17,6 +17,41 @@ function menucelular() {
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+// Toast Notification (substitui alert() nativo)
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+function mostrarToast(mensagem, tipo) {
+  tipo = tipo || "erro"
+  var icones = { sucesso: "✔", erro: "✖", aviso: "⚠" }
+
+  var container = document.getElementById("toast-container")
+  if (!container) {
+    container = document.createElement("div")
+    container.id = "toast-container"
+    container.className = "toast-container"
+    document.body.appendChild(container)
+  }
+
+  var toast = document.createElement("div")
+  toast.className = "toast " + tipo
+  toast.innerHTML = '<span class="toast-icone">' + (icones[tipo] || "") + '</span><span class="toast-msg">' + mensagem + "</span>"
+  container.appendChild(toast)
+
+  // Força o reflow para a transição funcionar, depois mostra
+  toast.offsetHeight
+  toast.classList.add("visivel")
+
+  // Fica visível por 8 segundos, depois fade out de 0.5s e remove
+  setTimeout(function () {
+    toast.classList.remove("visivel")
+    toast.classList.add("saindo")
+  }, 8000)
+  setTimeout(function () {
+    if (toast.parentNode) toast.parentNode.removeChild(toast)
+  }, 8500)
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 // Autenticação via API (token JWT guardado no sessionStorage)
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -85,8 +120,30 @@ async function confirmarLogin() {
   var senha = document.getElementById("auth-senha").value
   var erro = document.getElementById("auth-erro")
 
-  if (!email || !senha) {
-    erro.textContent = "Preencha e-mail e senha."
+  if (!email) {
+    erro.textContent = "Preencha o e-mail."
+    return
+  }
+  // Valida formato básico de e-mail
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(email)) {
+    erro.textContent = "Formato de e-mail inválido."
+    return
+  }
+  if (email.length > 100) {
+    erro.textContent = "O e-mail deve ter no máximo 100 caracteres."
+    return
+  }
+  if (!senha) {
+    erro.textContent = "Preencha a senha."
+    return
+  }
+  if (senha.length < 4) {
+    erro.textContent = "A senha deve ter pelo menos 4 caracteres."
+    return
+  }
+  if (senha.length > 100) {
+    erro.textContent = "A senha deve ter no máximo 100 caracteres."
     return
   }
 
@@ -167,8 +224,28 @@ async function confirmarAlterarSenha() {
   erro.textContent = ""
   ok.textContent = ""
 
-  if (nova.length < 4) {
-    erro.textContent = "A nova senha deve ter pelo menos 4 caracteres."
+  if (!atual) {
+    erro.textContent = "Preencha a senha atual."
+    return
+  }
+  if (!nova) {
+    erro.textContent = "Preencha a nova senha."
+    return
+  }
+  if (nova.length < 10) {
+    erro.textContent = "A nova senha deve ter pelo menos 10 caracteres."
+    return
+  }
+  if (nova.length > 100) {
+    erro.textContent = "A nova senha deve ter no máximo 100 caracteres."
+    return
+  }
+  if (!/[A-Za-z]/.test(nova)) {
+    erro.textContent = "A nova senha deve conter pelo menos uma letra."
+    return
+  }
+  if (!/[0-9]/.test(nova)) {
+    erro.textContent = "A nova senha deve conter pelo menos um número."
     return
   }
   if (nova !== confirmar) {
@@ -375,8 +452,54 @@ async function confirmarInteresse() {
   var endereco = document.getElementById("lead-endereco").value.trim()
   var obs = document.getElementById("lead-obs").value.trim()
 
-  if (!nome || !telefone || !cidade) {
-    alert("Preencha nome, WhatsApp e cidade!")
+  // Validações de entrada
+  if (!nome) {
+    mostrarToast("Preencha seu nome.", "aviso")
+    return
+  }
+  if (nome.length < 3) {
+    mostrarToast("O nome deve ter pelo menos 3 caracteres.", "aviso")
+    return
+  }
+  if (nome.length > 100) {
+    mostrarToast("O nome deve ter no máximo 100 caracteres.", "aviso")
+    return
+  }
+  if (!telefone) {
+    mostrarToast("Preencha seu WhatsApp.", "aviso")
+    return
+  }
+  // Aceita formatos: (14) 99999-9999, 14 99999-9999, 14999999999, etc.
+  var telLimpo = telefone.replace(/\D/g, "")
+  if (telLimpo.length < 10 || telLimpo.length > 11) {
+    mostrarToast("WhatsApp inválido. Use DDD + número (10 ou 11 dígitos).", "aviso")
+    return
+  }
+  // Formata o telefone no padrão (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
+  var telefoneFormatado
+  if (telLimpo.length === 11) {
+    telefoneFormatado = "(" + telLimpo.substring(0, 2) + ") " + telLimpo.substring(2, 7) + "-" + telLimpo.substring(7)
+  } else {
+    telefoneFormatado = "(" + telLimpo.substring(0, 2) + ") " + telLimpo.substring(2, 6) + "-" + telLimpo.substring(6)
+  }
+  if (!cidade) {
+    mostrarToast("Selecione sua cidade.", "aviso")
+    return
+  }
+  if (quantidade < 1) {
+    mostrarToast("A quantidade deve ser pelo menos 1.", "aviso")
+    return
+  }
+  if (quantidade > 99) {
+    mostrarToast("A quantidade máxima é 99.", "aviso")
+    return
+  }
+  if (endereco && endereco.length > 200) {
+    mostrarToast("O endereço deve ter no máximo 200 caracteres.", "aviso")
+    return
+  }
+  if (obs && obs.length > 500) {
+    mostrarToast("As observações devem ter no máximo 500 caracteres.", "aviso")
     return
   }
   if (!produtoAtual) return
@@ -387,7 +510,7 @@ async function confirmarInteresse() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nome_cliente: nome,
-        telefone: telefone,
+        telefone: telefoneFormatado,
         quantidade: quantidade,
         cidade: cidade,
         endereco: endereco,
@@ -399,12 +522,12 @@ async function confirmarInteresse() {
 
     if (res.ok) {
       fecharPopupBtn()
-      alert("✔ Interesse registrado com sucesso! Entraremos em contato em breve.")
+      mostrarToast("Interesse registrado com sucesso! Entraremos em contato em breve.", "sucesso")
     } else {
-      alert("Erro ao registrar interesse. Tente novamente.")
+      mostrarToast("Erro ao registrar interesse. Tente novamente.", "erro")
     }
   } catch (e) {
-    alert("Erro ao conectar com o servidor.")
+    mostrarToast("Erro ao conectar com o servidor.", "erro")
   }
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -519,17 +642,43 @@ async function renderizarProdutos() {
 
 async function salvarProduto() {
   var id = document.getElementById("produtos-id").value
-  var nome = document.getElementById("produtos-nome").value
+  var nome = document.getElementById("produtos-nome").value.trim()
   var preco = parseFloat(document.getElementById("produtos-preco").value)
-  var alt = document.getElementById("produtos-alt").value
+  var alt = document.getElementById("produtos-alt").value.trim()
   var categoria = document.getElementById("produtos-cat").value
   var inputFile = document.getElementById("produtos-file")
 
-  if (!nome || !preco) {
-    alert("Preencha nome e preço!")
+  // Validações de entrada
+  if (!nome) {
+    mostrarToast("Preencha o nome do produto.", "aviso")
+    return
+  }
+  if (nome.length < 2) {
+    mostrarToast("O nome do produto deve ter pelo menos 2 caracteres.", "aviso")
+    return
+  }
+  if (nome.length > 100) {
+    mostrarToast("O nome do produto deve ter no máximo 100 caracteres.", "aviso")
+    return
+  }
+  if (isNaN(preco) || preco <= 0) {
+    mostrarToast("Informe um preço válido (maior que zero).", "aviso")
+    return
+  }
+  if (preco > 99999.99) {
+    mostrarToast("O preço máximo é R$ 99.999,99.", "aviso")
+    return
+  }
+  if (alt && alt.length > 200) {
+    mostrarToast("A descrição da imagem deve ter no máximo 200 caracteres.", "aviso")
+    return
+  }
+  if (!id && inputFile.files.length === 0) {
+    mostrarToast("Selecione uma imagem para o produto.", "aviso")
     return
   }
 
+  // Monta o FormData com o telefone já limpo (caso seja um lead — não se aplica aqui, mas por segurança)
   var formData = new FormData()
   formData.append("name", nome)
   formData.append("price", preco)
@@ -553,11 +702,12 @@ async function salvarProduto() {
       await carregarProdutos()
       limparFormProduto()
       renderizarProdutos()
+      mostrarToast("Produto salvo com sucesso!", "sucesso")
     } else {
-      alert("Erro ao salvar produto.")
+      mostrarToast("Erro ao salvar produto.", "erro")
     }
   } catch (e) {
-    alert("Erro ao conectar com o servidor.")
+    mostrarToast("Erro ao conectar com o servidor.", "erro")
   }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -606,9 +756,9 @@ async function apagarProduto(id) {
         } else {
             try {
                 const data = await res.json()
-                alert(data.message || "Erro ao apagar produto.")
+                mostrarToast(data.message || "Erro ao apagar produto.", "erro")
             } catch {
-                alert("Este produto tem leads vinculados e não pode ser apagado.")
+                mostrarToast("Este produto tem leads vinculados e não pode ser apagado.", "erro")
             }
         }
     } catch (e) {
@@ -657,7 +807,7 @@ function configurarDropImage() {
         var larguraMaxima = 800
         var alturaMaxima = 800
         if (imgTeste.width > larguraMaxima || imgTeste.height > alturaMaxima) {
-          alert(`Imagem recusada! O limite é ${larguraMaxima}x${alturaMaxima} pixels. A sua tem ${imgTeste.width}x${imgTeste.height}.`)
+          mostrarToast(`Imagem recusada! O limite é ${larguraMaxima}x${alturaMaxima} pixels. A sua tem ${imgTeste.width}x${imgTeste.height}.`, "aviso")
           inputFile.value = ""
           preview.src = ""
           preview.style.display = "none"
