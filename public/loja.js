@@ -521,8 +521,27 @@ async function confirmarInteresse() {
     })
 
     if (res.ok) {
+      // Salva dados antes de fechar (fecharPopupBtn zera produtoAtual)
+      var nomeProduto = produtoAtual.name
+      var precoProduto = produtoAtual.price
+
       fecharPopupBtn()
       mostrarToast("Interesse registrado com sucesso! Entraremos em contato em breve.", "sucesso")
+
+      // Abre WhatsApp com resumo do pedido
+      var total = (precoProduto * quantidade).toFixed(2).replace(".", ",")
+      var texto = "Ola! Tenho interesse no produto:\n" +
+        "- " + nomeProduto + "\n" +
+        "Preco unitario: R$ " + precoProduto.toFixed(2).replace(".", ",") + "\n" +
+        "Quantidade: " + quantidade + "\n" +
+        "Total: R$ " + total + "\n" +
+        "Cliente: " + nome + "\n" +
+        "WhatsApp: " + telefoneFormatado + "\n" +
+        "Cidade: " + cidade
+      if (endereco) texto += "\nEndereco: " + endereco
+      if (obs) texto += "\nObs: " + obs
+      texto += "\n\nAguardando contato!"
+      window.open("https://wa.me/5514997208570?text=" + encodeURIComponent(texto), "_blank")
     } else {
       mostrarToast("Erro ao registrar interesse. Tente novamente.", "erro")
     }
