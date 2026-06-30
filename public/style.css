@@ -149,7 +149,7 @@ p{
  */
 .linha{
     display: flex;
-    align-items: center;
+    align-items: stretch; /* Faz todos os cards da linha terem a mesma altura */
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -228,6 +228,8 @@ p{
 
 /* * Coluna de 25% de largura (ideal para 4 itens por linha no desktop).
  * Usada na listagem de produtos da Home.
+ * display: flex com flex-direction: column garante altura uniforme em todos os cards,
+ * mesmo com diferentes tamanhos de texto.
  */
 .col-4{
     flex-basis: 25%;
@@ -235,6 +237,8 @@ p{
     padding: 10px;
     margin-bottom: 50px;
     transition: transform 0.5s; /* Prepara o elemento para a animação de zoom */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Efeito Hover do Card: Aumenta o tamanho do card em 10% (zoom) ao passar o mouse */
@@ -254,14 +258,22 @@ p{
 }
 
 /* * Imagem do produto no card.
- * object-fit: cover garante que a imagem preencha a área sem distorcer as proporções.
+ * Altura fixa com object-fit: cover para manter todas as imagens perfeitamente alinhadas.
  */
 .col-4 img{
     cursor: pointer;
     width: 100%;
+    height: 350px;
+    flex-shrink: 0; /* Impede que a imagem encolha */
     object-fit: cover;
-    object-position: center; /* Centraliza o corte da imagem */
-    border-radius: 10px; /* Bordas levemente arredondadas na imagem */
+    object-position: center;
+    border-radius: 10px;
+}
+
+/* Nome e preço alinhados ao final do card, garantindo uniformidade */
+.col-4 h4,
+.col-4 h5 {
+    margin-top: auto;
 }
 
 /* * Títulos das seções de categorias (ex: "Destaques", "Ofertas").
@@ -879,4 +891,69 @@ h4{
     .popup{
         padding: 20px 16px;
     }
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATIONS (substitui alert() nativo)
+   ========================================================================== */
+
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    min-width: 280px;
+    max-width: 420px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.toast.visivel {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast.saindo {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.toast.sucesso {
+    background: #27ae60;
+}
+
+.toast.erro {
+    background: #e74c3c;
+}
+
+.toast.aviso {
+    background: #f0a500;
+}
+
+.toast .toast-icone {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.toast .toast-msg {
+    flex: 1;
+    line-height: 1.4;
 }
