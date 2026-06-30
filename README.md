@@ -15,6 +15,8 @@ O projeto **Laço & Linha** é uma aplicação web full-stack para uma loja virt
 ### Visitante
 - Visualizar catálogo de produtos
 - Manifestar interesse via formulário (popup)
+- Enviar resumo da Lead para o admin, via Whatsapp
+
 
 ### Administrador
 - Login seguro com e-mail e senha
