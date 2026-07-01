@@ -33,7 +33,7 @@ async function saveFile(file) {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Obtenção do URL da imagem do produto
+// Obtenção da imagem do produto por URL
 function getFileUrl(fileName) {
     const { data } = supabase.storage
         .from(BUCKET_NAME)
